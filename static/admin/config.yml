@@ -1,0 +1,172 @@
+backend:
+  name: github
+  repo: inesb18/monsite
+
+media_folder: static/assets
+public_folder: /assets
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "src/pages/home/index.md"
+        label: "Home"
+        name: "home"
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "home-page" }
+          - {
+              label: "Block",
+              name: "block",
+              widget: "object",
+              fields:
+                [
+                  { label: "Name", name: "name", widget: "string" },
+                  { label: "Keen on", name: "keen on", widget: "string" },
+                  { label: "Fields", name: "name", widget: "list", field: { label: "Field", name: "field", widget: "string" } },
+                ],
+            }
+          - {
+              label: "Links",
+              name: "links",
+              widget: "list",
+              fields:
+                [
+                  { label: "Label", name: "label", widget: "string" },
+                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
+                  { label: "Link URL", name: "linkURL", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link." },
+                ],
+            }
+          - {
+              label: "Link to about page",
+              name: "linkToAbout",
+              widget: "object",
+              fields:
+                [
+                  { label: "Label", name: "label", widget: "string" },
+                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
+                  { label: "Link URL", name: "linkURL", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link." },
+                ],
+            }
+          - {
+              label: "SEO & Meta",
+              name: "seo",
+              widget: "object",
+              fields:
+                [
+                  { label: "Browser Tab Title", name: "browserTitle", widget: "string"},
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Description", name: "description", widget: "string" },
+                  { label: "Keywords", name: "keywords", widget: "string" },
+                ],
+            }
+      - file: "src/pages/about/index.md"
+        label: "About"
+        name: "about"
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page" }
+          - {
+              label: "Picture",
+              name: "picture",
+              widget: "object",
+              fields:
+                [
+                  { label: "Image", name: "image", widget: "image" },
+                  { label: "Image Description", name: "imageAlt", widget: "string" },
+                ],
+            }
+          - { label: "Body", name: "body", widget: "markdown" }
+          - {
+              label: "SEO & Meta",
+              name: "seo",
+              widget: "object",
+              fields:
+                [
+                  { label: "Browser Tab Title", name: "browserTitle", widget: "string"},
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Description", name: "description", widget: "string" },
+                  { label: "Keywords", name: "keywords", widget: "string" },
+                ],
+            }
+      - file: "src/pages/projects/index.md"
+        label: "Projects"
+        name: "projects"
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "project-page" }
+          - {
+              label: "Project",
+              name: "project",
+              widget: "list",
+              fields:
+                [
+                  { label: "Image", name: "image", widget: "image" },
+                  { label: "Image Description", name: "imageAlt", widget: "string" },
+                  { label: "Name", name: "name", widget: "string" },
+                  { label: "Short description", name: "description", widget: "string" },
+                  { label: URL, name: linkURL, widget: string },
+                  { label: "Roles", name: "roles", widget: "list", field: { label: "Role", name: "role", widget: "string"} },
+                ],
+            }
+          - {
+              label: "SEO & Meta",
+              name: "seo",
+              widget: "object",
+              fields:
+                [
+                  { label: "Browser Tab Title", name: "browserTitle", widget: "string"},
+                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Description", name: "description", widget: "string" },
+                  { label: "Keywords", name: "keywords", widget: "string" },
+                ],
+            }
+  - name: "photographyCategory"
+    label: "Photography category"
+    folder: "src/pages/photography"
+    create: true
+    fields:
+      - { label: "Template Key", name: "templateKey", widget: "hidden", default: "photography" }
+      - { label: "Order", name: "order", widget: "number" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Cover picture", name: "coverPic", widget: "image" }
+      - { label: "Pictures", name: pictures, widget: list, field: {label: Image, name: image, widget: image} }
+  - name: "navbarAndFooter"
+    label: "Navbar & Footer"
+    files:
+      - file: "src/pages/navbar/index.md"
+        label: "Navbar"
+        name: "navbar"
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "navbar" }
+          - { label: "Logo", name: "logo", widget: "image" }
+          - {
+              label: "Menu Items",
+              name: "menuItems",
+              widget: "list",
+              fields:
+                [
+                  { label: "Label", name: "label", widget: "string" },
+                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
+                  { label: "Link URL", name: "linkURL", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link." },
+                ],
+            }
+      - file: "src/pages/footer/index.md"
+        label: "Footer"
+        name: "footer"
+        fields:
+          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "footer" }
+          - {
+              label: "Rights & Credits",
+              name: "rightsAndCredits",
+              widget: "list",
+              field: { label: "One line", name: "oneLine", widget: "string" }
+            }
+          - {
+              label: "Links",
+              name: "links",
+              widget: "list",
+              fields:
+                [
+                  { label: "Label", name: "label", widget: "string" },
+                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
+                  { label: "Link URL", name: "linkURL", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link." },
+                ],
+            }
