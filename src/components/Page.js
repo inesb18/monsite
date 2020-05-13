@@ -7,9 +7,9 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import SEO from '../components/SEO';
 
 const theme = {
-  peach: '#06aed5',
-  darkPeach: '#06aed5',
-  lightPeach: '#06aed5',
+  peach: '#FB9F89',
+  darkPeach: '#E78F7B',
+  lightPeach: '#FDC5B8',
   black: '#393939',
   maxWidth: '1000px',
 };
