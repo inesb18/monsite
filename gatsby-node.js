@@ -39,15 +39,7 @@ exports.createPages = ({ actions, graphql }) => {
         pathName = edge.node.fields.slug;
         component = path.resolve(`src/templates/photography-cat.js`);
       } else {
-        if (edge.node.fields.slug === "/home/") {
-          pathName = "/";
-        } else if (edge.node.fields.slug === '/about/') {
-          pathName = "/a-propos"
-        } else if (edge.node.fields.slug === '/projects/') {
-          pathName = "/projets-tech"
-        } else if (edge.node.fields.slug === '/legal-notice/') {
-            pathName = "/mentions-legales"
-        }
+        pathName = edge.node.fields.slug;
         component = path.resolve(`src/templates/${String(edge.node.fields.slug.slice(0,-1))}.js`);
       }
       const id = edge.node.id;
