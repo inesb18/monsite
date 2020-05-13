@@ -22,7 +22,7 @@ collections:
                 [
                   { label: "Name", name: "name", widget: "string" },
                   { label: "Keen on", name: "keen on", widget: "string" },
-                  { label: "Fields", name: "name", widget: "list", field: { label: "Field", name: "field", widget: "string" } },
+                  { label: "Fields", name: "fields", widget: "list", field: { label: "Field", name: "field", widget: "string" } },
                 ],
             }
           - {
