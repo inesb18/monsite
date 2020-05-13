@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "mon-site",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "My own website",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -23,6 +23,7 @@
     "gatsby-plugin-sass": "^2.3.1",
     "gatsby-plugin-sharp": "^2.6.2",
     "gatsby-plugin-styled-components": "^3.3.1",
+    "gatsby-remark-source-name": "^1.0.0",
     "gatsby-source-filesystem": "^2.3.1",
     "gatsby-transformer-remark": "^2.8.7",
     "gatsby-transformer-sharp": "^2.5.2",

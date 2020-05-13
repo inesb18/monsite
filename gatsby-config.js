@@ -13,10 +13,11 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
+    "gatsby-remark-source-name",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdown-pages`,
+        name: `content`,
         path: `${__dirname}/src/content`,
       },
     },

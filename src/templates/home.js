@@ -6,8 +6,7 @@ import Page from "../components/Page";
 const IndexPage = ({ data }) => {
   return (
     <Page>
-      <h1>Hello</h1>
-      <p>OK essayons</p>
+      <h1>HOME</h1>
     </Page>
   )
 }
