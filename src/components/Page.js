@@ -10,6 +10,7 @@ const theme = {
   peach: '#FB9F89',
   darkPeach: '#E78F7B',
   lightPeach: '#FDC5B8',
+  veryLightPeach: '#FFF3F1',
   black: '#393939',
   maxWidth: '1200px',
   outPadding: '2.4rem',
@@ -23,8 +24,9 @@ const StyledPage = styled.div `
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: white;
   color: ${props => props.theme.black};
+  overflow: hidden;
+  z-index: 0;
 `;
 
 const Inner = styled.main`

@@ -32,6 +32,17 @@ const StyledBlock = styled.div `
       content:"& ";
     }
   }
+  position: relative;
+  &:after {
+    content: "";
+    background: ${props => props.theme.veryLightPeach};
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
   @media (max-width: 768px) {
     padding: 1.6rem;
     h1 {
