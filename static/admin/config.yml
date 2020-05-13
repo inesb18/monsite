@@ -9,7 +9,7 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
-      - file: "src/pages/home/index.md"
+      - file: "src/content/home/index.md"
         label: "Home"
         name: "home"
         fields:
@@ -59,7 +59,7 @@ collections:
                   { label: "Keywords", name: "keywords", widget: "string" },
                 ],
             }
-      - file: "src/pages/about/index.md"
+      - file: "src/content/about/index.md"
         label: "About"
         name: "about"
         fields:
@@ -87,7 +87,7 @@ collections:
                   { label: "Keywords", name: "keywords", widget: "string" },
                 ],
             }
-      - file: "src/pages/projects/index.md"
+      - file: "src/content/projects/index.md"
         label: "Projects"
         name: "projects"
         fields:
@@ -120,7 +120,7 @@ collections:
             }
   - name: "photographyCategory"
     label: "Photography category"
-    folder: "src/pages/photography"
+    folder: "src/content/photography"
     create: true
     fields:
       - { label: "Template Key", name: "templateKey", widget: "hidden", default: "photography" }
@@ -131,7 +131,7 @@ collections:
   - name: "navbarAndFooter"
     label: "Navbar & Footer"
     files:
-      - file: "src/pages/navbar/index.md"
+      - file: "src/content/navbar/index.md"
         label: "Navbar"
         name: "navbar"
         fields:
@@ -148,7 +148,7 @@ collections:
                   { label: "Link URL", name: "linkURL", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link." },
                 ],
             }
-      - file: "src/pages/footer/index.md"
+      - file: "src/content/footer/index.md"
         label: "Footer"
         name: "footer"
         fields:
