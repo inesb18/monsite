@@ -3,7 +3,7 @@ import React from "react";
 import Page from "../components/Page";
 
 
-const IndexPage = ({ data }) => {
+const Projects = ({ data }) => {
   return (
     <Page>
       <h1>PROJECTS</h1>
@@ -11,4 +11,4 @@ const IndexPage = ({ data }) => {
   )
 }
 
-export default IndexPage
+export default Projects

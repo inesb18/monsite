@@ -3,12 +3,12 @@ import React from "react";
 import Page from "../components/Page";
 
 
-const About = ({ data }) => {
+const LegalNotice = ({ data }) => {
   return (
     <Page>
-      <h1>ABOUT</h1>
+      <h1>Mentions Légales</h1>
     </Page>
   )
 }
 
-export default About
+export default LegalNotice

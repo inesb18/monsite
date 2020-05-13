@@ -45,13 +45,12 @@ exports.createPages = ({ actions, graphql }) => {
           pathName = "/a-propos"
         } else if (edge.node.fields.slug === '/projects/') {
           pathName = "/projets-tech"
+        } else if (edge.node.fields.slug === '/legal-notice/') {
+            pathName = "/mentions-legales"
         }
         component = path.resolve(`src/templates/${String(edge.node.fields.slug.slice(0,-1))}.js`);
       }
       const id = edge.node.id;
-      console.log(pathName);
-      console.log(component);
-      console.log('-------');
       createPage({
         path: pathName,
         component,
