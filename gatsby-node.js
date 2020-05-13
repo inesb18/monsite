@@ -35,11 +35,13 @@ exports.createPages = ({ actions, graphql }) => {
 
     Pages.forEach(edge => {
       let component, pathName;
+      pathName = edge.node.fields.slug;
       if (edge.node.fields.slug.match(/^\/photography\/.*$/)) {
-        pathName = edge.node.fields.slug;
-        component = path.resolve(`src/templates/photography-cat.js`);
+        component = path.resolve(`src/templates/photographie-cat.js`);
+      } else if (edge.node.fields.slug === "/home/") {
+        component = path.resolve(`src/templates/home.js`);
+
       } else {
-        pathName = edge.node.fields.slug;
         component = path.resolve(`src/templates/${String(edge.node.fields.slug.slice(0,-1))}.js`);
       }
       const id = edge.node.id;
@@ -60,7 +62,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
-    console.log(value);
     createNodeField({
       name: `slug`,
       node,
