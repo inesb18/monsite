@@ -14,6 +14,7 @@ const theme = {
   maxWidth: '1000px',
   outPadding: '2.4rem',
   heightHeader: '8rem',
+  innerVerticalPadding: '2rem',
 };
 
 const StyledPage = styled.div `
@@ -27,7 +28,8 @@ const StyledPage = styled.div `
 const Inner = styled.main`
   flex: 1 0 auto;
   width: 100%;
-  padding-top: ${props => props.theme.heightHeader};
+  padding-top: calc(${props => props.theme.heightHeader} + ${props => props.theme.innerVerticalPadding});
+  padding-bottom: ${props => props.theme.innerVerticalPadding};
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
 `;
