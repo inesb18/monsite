@@ -23,6 +23,10 @@ const StyledFooter = styled.footer `
     padding: 0;
     text-align: right;
   }
+  @media (max-width: 768px) {
+    padding: ${props => props.theme.outPaddingSmall};
+    font-size: 1.2rem;
+  }
 `;
 
 

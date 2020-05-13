@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import CustomLink from './CustomLink';
 
 const StyledListMenu = styled.ul `
-  border-bottom: 4px solid ${props => props.theme.peach};
+  border-bottom: 6px solid ${props => props.theme.peach};
   padding: 0 ${props => props.theme.outPadding} 0 ${props => props.theme.outPadding};
   margin: 0;
   height: ${props => props.theme.heightHeader};

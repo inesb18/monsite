@@ -11,10 +11,11 @@ const theme = {
   darkPeach: '#E78F7B',
   lightPeach: '#FDC5B8',
   black: '#393939',
-  maxWidth: '1000px',
+  maxWidth: '1200px',
   outPadding: '2.4rem',
+  outPaddingSmall: '1rem',
   heightHeader: '8rem',
-  innerVerticalPadding: '2rem',
+  innerVerticalPadding: '6rem',
 };
 
 const StyledPage = styled.div `
@@ -30,8 +31,17 @@ const Inner = styled.main`
   width: 100%;
   padding-top: calc(${props => props.theme.heightHeader} + ${props => props.theme.innerVerticalPadding});
   padding-bottom: ${props => props.theme.innerVerticalPadding};
-  max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
+  width: 80%;
+  @media (max-width: 1200px) {
+    width: 85%;
+  }
+  @media (max-width: 992px) {
+    width: 90%;
+  }
+  @media (max-width: 768px) {
+    width: 92%;
+  }
 `;
 
 // min-height: calc(100vh + 6rem - 5rem - 4rem - 6rem); //6rem: padding of content, 5rem: height of footer, 4rem: margin-top of footer, 6rem height of header
@@ -50,7 +60,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
-    line-height: 2;
     font-family: 'Reem Kufi', sans-serif;
   }
   h1 {
