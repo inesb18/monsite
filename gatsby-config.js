@@ -14,13 +14,13 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify-cms`,
     "gatsby-remark-source-name",
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `content`,
-        path: `${__dirname}/src/content`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `content`,
+    //     path: `${__dirname}/src/content`,
+    //   },
+    // },
     `gatsby-transformer-remark`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sass`,
