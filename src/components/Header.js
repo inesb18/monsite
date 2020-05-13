@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 
 import Navbar from "./Navbar"
-// import Hamburger from "./Hamburger"
+import Hamburger from "./Hamburger"
 
 const StyledHeader = styled.header `
   width: 100%;
@@ -18,6 +18,12 @@ const StyledHeader = styled.header `
   align-items: center;
   .logo {
     height: 4rem;
+  }
+  @media (max-width: 768px) {
+    height: ${props => props.theme.heightHeaderSmall};
+    .logo {
+      height: 3rem;
+    }
   }
 `;
 
@@ -57,6 +63,7 @@ const Header  = ({ section }) => {
       </Link>
       <nav>
         <Navbar section={section} menuItems={menuItems}/>
+        <Hamburger section={section} menuItems={menuItems}/>
       </nav>
     </StyledHeader>
   )

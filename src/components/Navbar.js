@@ -12,6 +12,7 @@ const StyledListMenu = styled.ul `
   display: flex;
   align-items: center;
   li {
+    white-space: nowrap;
     font-size: 1.8rem;
     margin-right: 8rem;
     &:last-child {
@@ -20,6 +21,9 @@ const StyledListMenu = styled.ul `
     .active {
       color: ${props => props.theme.darkPeach};
     }
+  }
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
 
