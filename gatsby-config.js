@@ -8,7 +8,6 @@ module.exports = {
       link: `https://www.malt.fr/profile/inesbelghiti`
     },
     // image: "",
-    keywords: "ines belghiti, développement web, produit, photographie",
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

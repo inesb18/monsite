@@ -5,7 +5,7 @@ import Page from "../components/Page";
 
 const About = ({ data }) => {
   return (
-    <Page>
+    <Page section="À propos">
       <h1>ABOUT</h1>
     </Page>
   )

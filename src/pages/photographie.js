@@ -5,7 +5,7 @@ import Page from "../components/Page";
 
 const Photography = ({ data }) => {
   return (
-    <Page>
+    <Page section="Photographie">
       <h1>PHOTOGRAPHY CATEGORIES</h1>
     </Page>
   )

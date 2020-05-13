@@ -5,7 +5,7 @@ import Page from "../components/Page";
 
 const Projects = ({ data }) => {
   return (
-    <Page>
+    <Page section="Tech">
       <h1>PROJECTS</h1>
     </Page>
   )

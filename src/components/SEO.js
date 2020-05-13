@@ -21,7 +21,6 @@ function SEO({ description, lang, meta, title }) {
             author {
               name
             }
-            keywords
           }
         }
       }

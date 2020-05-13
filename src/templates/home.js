@@ -5,7 +5,7 @@ import Page from "../components/Page";
 
 const IndexPage = ({ data }) => {
   return (
-    <Page>
+    <Page section="Accueil">
       <h1>HOME</h1>
     </Page>
   )

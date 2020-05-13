@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 
-// import Header from '../components/Header';
-// import Header from '../components/Header';
+import Header from '../components/Header';
+// import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 
 const theme = {
@@ -12,6 +12,8 @@ const theme = {
   lightPeach: '#FDC5B8',
   black: '#393939',
   maxWidth: '1000px',
+  outPadding: '2.4rem',
+  heightHeader: '10rem',
 };
 
 const StyledPage = styled.div `
@@ -20,16 +22,16 @@ const StyledPage = styled.div `
 `;
 
 const Inner = styled.main`
+  padding-top: ${props => props.theme.heightHeader};
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
-  padding: 2rem;
 `;
 
 const GlobalStyle = createGlobalStyle`
 
   html {
     box-sizing: border-box;
-    font-size: 10px;
+    font-size: 12px;
   }
   *, *:before, *:after {
     box-sizing: inherit;
@@ -59,7 +61,7 @@ class Page extends Component {
         <SEO title="Inès Belghiti"/>
         <GlobalStyle/>
         <StyledPage>
-
+          <Header section = {this.props.section} />
           <Inner>
             { this.props.children }
           </Inner>
