@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 
-import CustomLink from './CustomLink'
+import CustomLink from './CustomLink';
 
 const StyledListMenu = styled.ul `
   border-bottom: 4px solid ${props => props.theme.peach};

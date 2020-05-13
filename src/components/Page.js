@@ -3,7 +3,7 @@ import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
 
 import Header from '../components/Header';
-// import Footer from '../components/Footer';
+import Footer from '../components/Footer';
 import SEO from '../components/SEO';
 
 const theme = {
@@ -17,19 +17,26 @@ const theme = {
 };
 
 const StyledPage = styled.div `
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background: white;
   color: ${props => props.theme.black};
 `;
 
 const Inner = styled.main`
+  flex: 1 0 auto;
+  width: 100%;
   padding-top: ${props => props.theme.heightHeader};
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
 `;
 
+// min-height: calc(100vh + 6rem - 5rem - 4rem - 6rem); //6rem: padding of content, 5rem: height of footer, 4rem: margin-top of footer, 6rem height of header
 const GlobalStyle = createGlobalStyle`
 
   html {
+    height: 100%;
     box-sizing: border-box;
     font-size: 12px;
   }
@@ -37,6 +44,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
   body {
+    height: 100%;
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
@@ -65,7 +73,7 @@ class Page extends Component {
           <Inner>
             { this.props.children }
           </Inner>
-
+          <Footer/>
         </StyledPage>
       </ThemeProvider>
     )
