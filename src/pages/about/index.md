@@ -5,8 +5,8 @@ picture:
 seo:
   browserTitle: Inès Belghiti | Qui suis-je?
   title: Inès Belghiti | À propos
-  description: Inès Belghiti, passionnée de product management, développement web,
-    et plein d'autres choses encore...
+  description: Inès Belghiti, passionnée de Product Management, Développement Web,
+    Photographie et plein d'autres choses encore...
   keywords: inès belghiti, développement web, tech, product management, photographie
 ---
 J’ai grandi dans la ville lumière, puis je suis allée au lycée à Versailles et j’y suis restée pour mes classes préparatoires.\
