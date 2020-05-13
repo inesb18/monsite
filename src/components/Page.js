@@ -13,7 +13,7 @@ const theme = {
   black: '#393939',
   maxWidth: '1000px',
   outPadding: '2.4rem',
-  heightHeader: '10rem',
+  heightHeader: '8rem',
 };
 
 const StyledPage = styled.div `
