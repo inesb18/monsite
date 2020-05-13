@@ -9,42 +9,41 @@ collections:
   - name: "pages"
     label: "Pages"
     files:
-      - file: "src/content/home/index.md"
-        label: "Home"
-        name: "home"
+      - file: "src/content/index.md"
+        label: "Accueil"
+        name: "accueil"
         fields:
-          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "home-page" }
           - {
-              label: "Block",
-              name: "block",
+              label: "Bloc",
+              name: "bloc",
               widget: "object",
               fields:
                 [
-                  { label: "Name", name: "name", widget: "string" },
-                  { label: "Keen on", name: "keen on", widget: "string" },
-                  { label: "Fields", name: "fields", widget: "list", field: { label: "Field", name: "field", widget: "string" } },
+                  { label: "Nom", name: "nom", widget: "string" },
+                  { label: "Passionnée de", name: "passionneeDe", widget: "string" },
+                  { label: "Domaines", name: "domaines", widget: "list", field: { label: "Domaine", name: "domaine", widget: "string" } },
                 ],
             }
           - {
-              label: "Links",
+              label: "Liens",
               name: "links",
               widget: "list",
               fields:
                 [
                   { label: "Label", name: "label", widget: "string" },
-                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
-                  { label: "Link URL", name: "linkURL", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link." },
+                  { label: "Type de lien", name: "typeLien", widget: "select", options: ["interne", "externe"] },
+                  { label: "URL", name: "URL", widget: "string", hint: "Utilisez un chemin relatif (ex /about) si le lien est interne." },
                 ],
             }
           - {
-              label: "Link to about page",
-              name: "linkToAbout",
+              label: "Lien vers à props",
+              name: "lienVersAPropos",
               widget: "object",
               fields:
                 [
                   { label: "Label", name: "label", widget: "string" },
-                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
-                  { label: "Link URL", name: "linkURL", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link." },
+                  { label: "Type de lien", name: "typeLien", widget: "select", options: ["interne", "externe"] },
+                  { label: "URL", name: "URL", widget: "string", hint: "Utilisez un chemin relatif (ex /about) si le lien est interne." },
                 ],
             }
           - {
@@ -53,73 +52,71 @@ collections:
               widget: "object",
               fields:
                 [
-                  { label: "Browser Tab Title", name: "browserTitle", widget: "string"},
-                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Titre de l'onglet du navigateur", name: "titreOngletNav", widget: "string"},
+                  { label: "Titre", name: "titre", widget: "string" },
                   { label: "Description", name: "description", widget: "string" },
                   { label: "Keywords", name: "keywords", widget: "string" },
                 ],
             }
-      - file: "src/content/about/index.md"
-        label: "About"
-        name: "about"
+      - file: "src/content/a-propos/index.md"
+        label: "A propos"
+        name: "aPropos"
         fields:
-          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page" }
           - {
-              label: "Picture",
-              name: "picture",
+              label: "Photo",
+              name: "photo",
               widget: "object",
               fields:
                 [
                   { label: "Image", name: "image", widget: "image" },
-                  { label: "Image Description", name: "imageAlt", widget: "string" },
+                  { label: "Description courte de l'image (image alt)", name: "imageAlt", widget: "string" },
                 ],
             }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Texte", name: "body", widget: "markdown" }
           - {
               label: "SEO & Meta",
               name: "seo",
               widget: "object",
               fields:
                 [
-                  { label: "Browser Tab Title", name: "browserTitle", widget: "string"},
-                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Titre de l'onglet du navigateur", name: "titreOngletNav", widget: "string"},
+                  { label: "Titre", name: "titre", widget: "string" },
                   { label: "Description", name: "description", widget: "string" },
                   { label: "Keywords", name: "keywords", widget: "string" },
                 ],
             }
-      - file: "src/content/legal-notice/index.md"
-        label: "Legal Notice"
-        name: "legalNotice"
+      - file: "src/content/mentions-legales/index.md"
+        label: "Mentions légales"
+        name: "mentionsLegales"
         fields:
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Texte", name: "body", widget: "markdown" }
           - {
               label: "SEO & Meta",
               name: "seo",
               widget: "object",
               fields:
                 [
-                  { label: "Browser Tab Title", name: "browserTitle", widget: "string"},
-                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Titre de l'onglet du navigateur", name: "titreOngletNav", widget: "string"},
+                  { label: "Titre", name: "titre", widget: "string" },
                   { label: "Description", name: "description", widget: "string" },
                   { label: "Keywords", name: "keywords", widget: "string" },
                 ],
             }
-      - file: "src/content/projects/index.md"
-        label: "Projects"
-        name: "projects"
+      - file: "src/content/projets-tech/index.md"
+        label: "Projets tech"
+        name: "projetsTech"
         fields:
-          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "project-page" }
           - {
-              label: "Project",
-              name: "project",
+              label: "Projet",
+              name: "projet",
               widget: "list",
               fields:
                 [
                   { label: "Image", name: "image", widget: "image" },
-                  { label: "Image Description", name: "imageAlt", widget: "string" },
-                  { label: "Name", name: "name", widget: "string" },
-                  { label: "Short description", name: "description", widget: "string" },
-                  { label: URL, name: linkURL, widget: string },
+                  { label: "Description courte de l'image (image alt)", name: "imageAlt", widget: "string" },
+                  { label: "Nom", name: "nom", widget: "string" },
+                  { label: "Description courte du projet", name: "description", widget: "string" },
+                  { label: "URL", name: "URL", widget: string },
                   { label: "Roles", name: "roles", widget: "list", field: { label: "Role", name: "role", widget: "string"} },
                 ],
             }
@@ -129,52 +126,50 @@ collections:
               widget: "object",
               fields:
                 [
-                  { label: "Browser Tab Title", name: "browserTitle", widget: "string"},
-                  { label: "Title", name: "title", widget: "string" },
+                  { label: "Titre de l'onglet du navigateur", name: "titreOngletNav", widget: "string"},
+                  { label: "Titre", name: "titre", widget: "string" },
                   { label: "Description", name: "description", widget: "string" },
                   { label: "Keywords", name: "keywords", widget: "string" },
                 ],
             }
-  - name: "photographyCategory"
-    label: "Photography category"
-    folder: "src/content/photography"
+  - name: "categoriePhoto"
+    label: "Catégorie de photographie"
+    folder: "src/content/photographie"
     create: true
     fields:
       - { label: "Template Key", name: "templateKey", widget: "hidden", default: "photography" }
-      - { label: "Order", name: "order", widget: "number" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Cover picture", name: "coverPic", widget: "image" }
-      - { label: "Pictures", name: pictures, widget: list, field: {label: Image, name: image, widget: image} }
-  - name: "navbarAndFooter"
+      - { label: "Ordre", name: "ordre", widget: "number" }
+      - { label: "Titre", name: "titre", widget: "string" }
+      - { label: "Photo de couverture", name: "photoCouverture", widget: "image" }
+      - { label: "Photos", name: "photos", widget: list, field: {label: "Image", name: "image", widget: image} }
+  - name: "navbarEtFooter"
     label: "Navbar & Footer"
     files:
       - file: "src/content/navbar/index.md"
         label: "Navbar"
         name: "navbar"
         fields:
-          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "navbar" }
           - { label: "Logo", name: "logo", widget: "image" }
           - {
-              label: "Menu Items",
-              name: "menuItems",
+              label: "Items du menu",
+              name: "itemsMenu",
               widget: "list",
               fields:
                 [
                   { label: "Label", name: "label", widget: "string" },
-                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
-                  { label: "Link URL", name: "linkURL", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link." },
+                  { label: "Type de lien", name: "typeLien", widget: "select", options: ["interne", "externe"] },
+                  { label: "URL", name: "URL", widget: "string", hint: "Utilisez un chemin relatif (ex /about) si le lien est interne." },
                 ],
             }
       - file: "src/content/footer/index.md"
         label: "Footer"
         name: "footer"
         fields:
-          - { label: "Template Key", name: "templateKey", widget: "hidden", default: "footer" }
           - {
-              label: "Rights & Credits",
-              name: "rightsAndCredits",
+              label: "Droits et crédits",
+              name: "droitsEtCredits",
               widget: "list",
-              field: { label: "One line", name: "oneLine", widget: "string" }
+              field: { label: "Une ligne", name: "uneLigne", widget: "string" }
             }
           - {
               label: "Links",
@@ -183,7 +178,7 @@ collections:
               fields:
                 [
                   { label: "Label", name: "label", widget: "string" },
-                  { label: "Link Type", name: "linkType", widget: "select", options: ["internal", "external"] },
-                  { label: "Link URL", name: "linkURL", widget: "string", hint: "Use a relative URL (e.g. /about) if the link is an internal link." },
+                  { label: "Type de lien", name: "typeLien", widget: "select", options: ["interne", "externe"] },
+                  { label: "URL", name: "URL", widget: "string", hint: "Utilisez un chemin relatif (ex /about) si le lien est interne." },
                 ],
             }
