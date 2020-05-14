@@ -68,7 +68,6 @@ const GlobalStyle = createGlobalStyle`
   }
   h1 {
     font-family: 'Philosopher', sans-serif;
-    letter-spacing: 0.3rem;
     font-weight: normal;
   }
   a {

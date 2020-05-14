@@ -39,14 +39,15 @@ const StyledBlock = styled.div `
     position: absolute;
     top: 20%;
     left: 20%;
-    width: 100vw;
-    height: 100vh;
+    width: 200vw;
+    height: 200vh;
     z-index: -1;
   }
   @media (max-width: 768px) {
     padding: 1.6rem;
     h1 {
-      font-size: 3.2rem
+      font-size: 3.2rem;
+      margin-bottom: 5rem;
     }
     .block_infos {
       p, h2 {
