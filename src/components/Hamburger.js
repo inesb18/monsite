@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { GiHamburgerMenu } from 'react-icons/gi';
 import styled from 'styled-components';
 
 import CustomLink from './CustomLink';
@@ -157,7 +156,7 @@ const Hamburger = ({ section, menuItems }) => {
 
   return (
     <div>
-      <StyledHamburger isMenuOpen={isMenuOpen} onClick={toggleMenu}>
+      <StyledHamburger ref={ref} isMenuOpen={isMenuOpen} onClick={toggleMenu}>
           <div></div>
           <div></div>
           <div></div>

@@ -38,8 +38,9 @@ const StyledText = styled.div`
     margin-bottom: 0;
   }
   @media (max-width: 768px) {
-    width: 80%;
+    width: 90%;
     font-size: 1.4rem;
+    padding: 1.4rem;
   }
 `;
 
