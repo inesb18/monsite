@@ -24,6 +24,8 @@ const StyledHamburgerMenu = styled.div`
     margin: 0;
     list-style: none;
     li {
+      margin-bottom: 0.6rem;
+      font-size: 1.8rem;
       text-align: center;
       .active {
         color: ${props => props.theme.darkPeach};

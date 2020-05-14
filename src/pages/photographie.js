@@ -1,12 +1,13 @@
 import React from "react";
 
 import Page from "../components/Page";
+import PageTitle from "../components/PageTitle";
 
 
 const Photography = ({ data }) => {
   return (
     <Page section="Photographie">
-      <h1>PHOTOGRAPHY CATEGORIES</h1>
+      <PageTitle title="Photographie"/>
     </Page>
   )
 }
