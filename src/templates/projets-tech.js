@@ -7,7 +7,7 @@ import PageTitle from "../components/PageTitle";
 
 const StyledProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
   grid-gap: 6rem;
   grid-auto-rows: 1fr;
   @media (max-width: 768px) {
