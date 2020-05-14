@@ -10,6 +10,10 @@ const StyledProjectsGrid = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   grid-gap: 6rem;
   grid-auto-rows: 1fr;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
 `;
 
 const StyledProject = styled.div`
@@ -60,6 +64,13 @@ const StyledProject = styled.div`
     .infos {
       transition: all 0.8s;
       opacity: 1;
+    }
+  }
+  @media (max-width: 768px) {
+    .infos {
+      font-size: 1.4rem;
+      padding: 1rem;
+      grid-gap: 0.6rem;
     }
   }
 `;
