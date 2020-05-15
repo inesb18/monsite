@@ -8,7 +8,7 @@ public_folder: /assets
 media_library:
   name: cloudinary
   config:
-    cloud_name: dfzwvorfrdfzwvorfr
+    cloud_name: dfzwvorfr
     api_key: 753425461788875
 
 collections:
