@@ -5,6 +5,12 @@ backend:
 media_folder: static/assets
 public_folder: /assets
 
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: dfzwvorfrdfzwvorfr
+    api_key: 753425461788875
+
 collections:
   - name: "pages"
     label: "Pages"
