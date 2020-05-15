@@ -10,6 +10,7 @@ media_library:
   config:
     cloud_name: dfzwvorfr
     api_key: 753425461788875
+    multiple: true
 
 collections:
   - name: "pages"
@@ -78,6 +79,7 @@ collections:
                   { label: "Description courte de l'image (image alt)", name: "imageAlt", widget: "string" },
                 ],
             }
+          - { label: "Texte", name: "body", widget: "markdown" }
           - {
               label: "Liens de contact",
               name: "contactLinks",
@@ -85,7 +87,6 @@ collections:
               required: false,
               fields:
                 [
-                  { label: "Texte", name: "body", widget: "markdown" },
                   { label: "URL LinkedIn", name: "linkedInURL", widget: "string", required: false},
                   { label: "URL Malt", name: "maltURL", widget: "string", required: false},
                   { label: "URL GitHub", name: "gitHubURL", widget: "string", required: false},
@@ -159,7 +160,7 @@ collections:
       - { label: "Template Key", name: "templateKey", widget: "hidden", default: "photography" }
       - { label: "Ordre", name: "order", widget: "number" }
       - { label: "Titre de la catégorie", name: "title", widget: "string" }
-      - { label: "Photo de couverture", name: "coverPicture", widget: "image" }
+      - { label: "Photo de couverture", name: "coverPicture", widget: "image", allow_multiple: true }
       - { label: "Photos", name: "photos", widget: list, field: {label: "Image", name: "image", widget: image} }
       - {
           label: "SEO & Meta",
