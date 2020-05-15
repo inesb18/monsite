@@ -36,9 +36,9 @@ exports.createPages = ({ actions, graphql }) => {
     Pages.forEach(edge => {
       let component, pathName;
       pathName = edge.node.fields.slug;
-      if (edge.node.fields.slug.match(/^\/photography\/.*$/)) {
+      if (pathName.match(/^\/photographie\/.*$/)) {
         component = path.resolve(`src/templates/photographie-cat.js`);
-      } else if (edge.node.fields.slug === "/") {
+      } else if (pathName === "/") {
         component = path.resolve(`src/templates/home.js`);
 
       } else {
