@@ -76,7 +76,7 @@ const StyledLinks = styled.div `
       bottom: 0;
       content: "";
       background: ${props => props.theme.peach};
-      width: 100px;
+      width: 40%;
       height: 6px;
     }
   }
