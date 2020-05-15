@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const StyledTitle = styled.h1 `
   height: fit-content;
-  white-space: nowrap;
-  font-size: 6.7rem;
+  white-space: ${props => props.size === "small" ? "normal" : "nowrap"};
+  font-size: ${props => props.size === "small" ? "4rem" : "6.7rem"};
   margin-top: 0;
   position: relative;
   &:after {
@@ -26,9 +26,9 @@ const StyledTitle = styled.h1 `
 `;
 
 
-const PageTitle  = ({ title }) => {
+const PageTitle  = ({ title, size }) => {
   return (
-    <StyledTitle>{title}</StyledTitle>
+    <StyledTitle size={size}>{title}</StyledTitle>
   )
 }
 

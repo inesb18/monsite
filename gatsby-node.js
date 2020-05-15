@@ -50,7 +50,7 @@ exports.createPages = ({ actions, graphql }) => {
         component,
         // additional data can be passed via context
         context: {
-          id,
+          slug: pathName,
         },
       });
     });
