@@ -2,6 +2,11 @@
 photo:
   image: /assets/me.jpeg
   imageAlt: Inès Belghiti
+contactLinks:
+  linkedInURL: https://www.linkedin.com/in/ines-belghiti/
+  maltURL: https://www.malt.fr/profile/inesbelghiti
+  gitHubURL: https://github.com/inesb18
+  email: ines.belghiti@gmail.com
 seo:
   description: Une passionnée de Product Managament, Développement Web,
     Photographie et pleins d'autres choses encore...
