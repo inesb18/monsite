@@ -78,7 +78,20 @@ collections:
                   { label: "Description courte de l'image (image alt)", name: "imageAlt", widget: "string" },
                 ],
             }
-          - { label: "Texte", name: "body", widget: "markdown" }
+          - {
+              label: "Liens de contact",
+              name: "contactLinks",
+              widget: "object",
+              required: false,
+              fields:
+                [
+                  { label: "Texte", name: "body", widget: "markdown" },
+                  { label: "URL LinkedIn", name: "linkedInURL", widget: "string", required: false},
+                  { label: "URL Malt", name: "maltURL", widget: "string", required: false},
+                  { label: "URL GitHub", name: "gitHubURL", widget: "string", required: false},
+                  { label: "Mail", name: "email", widget: "string", required: false},
+                ],
+            }
           - {
               label: "SEO & Meta",
               name: "seo",
