@@ -20,8 +20,12 @@ const StyledCat = styled.div`
   img {
     width: 100%;
     max-width: 800px;
-    -webkit-filter: drop-shadow(20px 20px 0 ${props => props.theme.veryLightpeach});
-    filter: drop-shadow(20px 20px 0 #FFF3F1);
+    -webkit-filter: drop-shadow(20px 20px 0 ${props => props.theme.veryLightPeach});
+    filter: drop-shadow(20px 20px 0 ${props => props.theme.veryLightPeach});
+    &:hover {
+      -webkit-filter: drop-shadow(20px 20px 0 ${props => props.theme.lightPeach});
+      filter: drop-shadow(20px 20px 0 ${props => props.theme.lightPeach});
+    }
   }
   h2 {
     font-weight: normal;
