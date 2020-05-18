@@ -20,7 +20,7 @@ const StyledTitle = styled.h1 `
   @media (max-width: 768px) {
     font-size: 4rem;
     &:after {
-      height: 8rem;
+      height: 6rem;
     }
   }
 `;

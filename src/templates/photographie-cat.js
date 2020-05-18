@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 
 import Page from "../components/Page";
 import PageTitle from "../components/PageTitle";
-
+import Gallery from "../components/Gallery";
 
 const Photography = ({ data }) => {
   const title = data.photos.edges[0].node.frontmatter.title;
@@ -11,9 +11,7 @@ const Photography = ({ data }) => {
   return (
     <Page section="Photographie">
       <PageTitle size="small" title={title}/>
-      <div>
-
-      </div>
+      <Gallery alt={title} photos={photos}/>
     </Page>
   )
 }

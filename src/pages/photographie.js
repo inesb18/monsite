@@ -31,7 +31,7 @@ const StyledCat = styled.div`
     font-weight: normal;
     width: 100%;
     margin-bottom: 1rem;
-    text-align: right;
+    text-align: ${props => props.side === 'right' ? "right" : "left"};
     position: relative;
     padding-bottom: 1rem;
     font-size: 2.4rem;
