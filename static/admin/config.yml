@@ -11,7 +11,6 @@ media_library:
     cloud_name: dfzwvorfr
     api_key: 753425461788875
     multiple: true
-    output_filename_only: true
 
 collections:
   - name: "pages"
