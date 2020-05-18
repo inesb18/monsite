@@ -47,6 +47,7 @@ const StyledText = styled.div`
 const About = ({ data }) => {
   const photo = data.about.edges[0].node.frontmatter.photo;
   const contentHTML = data.about.edges[0].node.html;
+  console.log(data);
   return (
     <Page section="À propos">
       <StyledHeaderAbout>
