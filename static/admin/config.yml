@@ -11,6 +11,7 @@ media_library:
     cloud_name: dfzwvorfr
     api_key: 753425461788875
     multiple: true
+    output_filename_only: true
 
 collections:
   - name: "pages"
@@ -160,8 +161,23 @@ collections:
       - { label: "Template Key", name: "templateKey", widget: "hidden", default: "photography" }
       - { label: "Ordre", name: "order", widget: "number" }
       - { label: "Titre de la catégorie", name: "title", widget: "string" }
-      - { label: "Photo de couverture", name: "coverPicture", widget: "image", allow_multiple: true }
-      - { label: "Photos", name: "photos", widget: list, field: {label: "Image", name: "image", widget: image} }
+      - { label: "Photo de couverture", name: "coverPicture", widget: "image" }
+      - { label: "Photos", name: "photos", widget: list, field:
+          {
+            label: "Image",
+            name: "image",
+            widget: image,
+            # media_library: {
+            #  config: {
+            #    default_transformations: {
+            #      width: 800,
+            #      quality: auto,
+            #      crop: fill,
+            #      effect: grayscale,
+            #   }
+            # }
+          }
+        }
       - {
           label: "SEO & Meta",
           name: "seo",

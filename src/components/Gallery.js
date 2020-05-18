@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import Masonry from 'react-masonry-component';
 import styled from 'styled-components';
 
@@ -13,10 +13,14 @@ const StyledImage = styled.img`
 
 
 const StyledGallery = styled.div`
-  visibility: ${ props => props.visible ? "visible" : "hidden"};
   margin: 0 auto;
   max-width: 1600px;
-  visibility:
+  .loading {
+    display: ${ props => props.visible ? "none" : "block"};
+  }
+  .masonry {
+    visibility: ${ props => props.visible ? "visible" : "hidden"};
+  }
 `;
 
 
@@ -32,8 +36,9 @@ const Gallery = ({ photos, alt }) => {
   }
   return (
       <StyledGallery visible={visible}>
+        <p className="loading">Loading...</p>
         <Masonry
-          className="mansory"
+          className="masonry"
           onImagesLoaded={handleImagesLoaded}
         >
           {childElements}
