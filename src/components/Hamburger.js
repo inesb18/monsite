@@ -15,7 +15,7 @@ const StyledHamburgerMenu = styled.div`
   width: 100vw;
   text-align: left;
   padding: 2rem;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
@@ -109,37 +109,37 @@ function useMenuOpen(initialIsVisible) {
 const StyledHamburger = styled.button `
   margin-right: ${props => props.theme.outPadding};
   display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  &:focus {
+    outline: none;
+  }
+  div {
     width: 2rem;
-    height: 2rem;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 10;
-    &:focus {
-      outline: none;
+    height: 0.28rem;
+    background: ${props => props.theme.peach};
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+    :first-child {
+      transform: ${({ isMenuOpen }) => isMenuOpen ? 'rotate(45deg)' : 'rotate(0)'};
     }
-    div {
-      width: 2rem;
-      height: 0.28rem;
-      background: ${props => props.theme.peach};
-      border-radius: 10px;
-      transition: all 0.3s linear;
-      position: relative;
-      transform-origin: 1px;
-      :first-child {
-        transform: ${({ isMenuOpen }) => isMenuOpen ? 'rotate(45deg)' : 'rotate(0)'};
-      }
-      :nth-child(2) {
-        opacity: ${({ isMenuOpen }) => isMenuOpen ? '0' : '1'};
-        transform: ${({ isMenuOpen }) => isMenuOpen ? 'translateX(20px)' : 'translateX(0)'};
-      }
-      :nth-child(3) {
-        transform: ${({ isMenuOpen }) => isMenuOpen ? 'rotate(-45deg)' : 'rotate(0)'};
-      }
+    :nth-child(2) {
+      opacity: ${({ isMenuOpen }) => isMenuOpen ? '0' : '1'};
+      transform: ${({ isMenuOpen }) => isMenuOpen ? 'translateX(20px)' : 'translateX(0)'};
     }
+    :nth-child(3) {
+      transform: ${({ isMenuOpen }) => isMenuOpen ? 'rotate(-45deg)' : 'rotate(0)'};
+    }
+  }
   @media (min-width: 768px) {
     display: none;
   }
@@ -154,6 +154,11 @@ const Hamburger = ({ section, menuItems }) => {
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
+    if (isMenuOpen) {
+      document.body.style.overflow = "visible";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
   };
 
   return (
@@ -169,6 +174,3 @@ const Hamburger = ({ section, menuItems }) => {
 }
 
 export default Hamburger
-
-
-// <GiHamburgerMenu onClick={toggleMenu} className="hamburgerButton" size="2.5rem"/>
