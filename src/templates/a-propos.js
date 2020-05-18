@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby"
 import styled from 'styled-components';
+import { Image, Transformation } from 'cloudinary-react';
 
 import Page from "../components/Page";
 import PageTitle from "../components/PageTitle";
@@ -47,14 +48,15 @@ const StyledText = styled.div`
 const About = ({ data }) => {
   const photo = data.about.edges[0].node.frontmatter.photo;
   const contentHTML = data.about.edges[0].node.html;
-  console.log(data);
+  const photoID = 'MonSite' + photo.image[0].match(/MonSite(.+)/)[1];
   return (
     <Page section="À propos">
       <StyledHeaderAbout>
         <PageTitle title="À propos"/>
         <div className="photo">
-          <img src={photo.image} alt={photo.imageAlt}/>
-
+          <Image cloudName="dfzwvorfr" publicId={photoID} alt={photo.imageAlt}>
+            <Transformation quality="auto" fetch_format="auto" width="600" crop="fit"/>
+          </Image>
         </div>
       </StyledHeaderAbout>
       <StyledText dangerouslySetInnerHTML={{ __html: contentHTML }} />

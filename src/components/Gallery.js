@@ -13,8 +13,6 @@ const StyledImage = styled.img`
 
 
 const StyledGallery = styled.div`
-  margin: 0 auto;
-  max-width: 1600px;
   .loading {
     display: ${ props => props.visible ? "none" : "block"};
   }
@@ -27,8 +25,9 @@ const StyledGallery = styled.div`
 const Gallery = ({ photos, alt }) => {
   const [visible, setVisible] = useState(false);
   const childElements = photos.map((photo) => {
-   return (
-      <StyledImage key={photo[0]} src={photo[0]} alt={alt}/>
+    const optimizedImage = photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_800`);
+    return (
+      <StyledImage key={photo[0]} src={optimizedImage} alt={alt}/>
     );
   });
   const handleImagesLoaded = () => {

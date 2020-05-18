@@ -42,7 +42,7 @@ const StyledProject = styled.div`
   }
   &.visible {
     background: white;
-    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(${props => props.image});
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${props => props.image});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;  background-size: cover;
@@ -59,28 +59,6 @@ const StyledProject = styled.div`
     }
   }
 `;
-
-
-
-
-// class Submenu extends React.Component {
-//   render() {
-//     return (
-//       <ul className="nav__submenu">
-//         <li className="nav__submenu-item">
-//           <Link to="/patrimoine/visites">
-//             Visites
-//           </Link>
-//         </li>
-//         <li className="nav__submenu-item">
-//           <Link to="/patrimoine/artistes">
-//             Artistes
-//           </Link>
-//         </li>
-//       </ul>
-//     )
-//   }
-// }
 
 function useInfoVisible(initialIsVisible) {
   const [isInfoVisible, setInfoVisible] = useState(initialIsVisible);
@@ -130,8 +108,10 @@ const Project = ({ project }) => {
     setInfoVisible(!isInfoVisible);
   };
 
+  const optimizedImage = project.image[0].replace(project.image[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_800`);
+
   return (
-    <StyledProject image={project.image} ref={ref}
+    <StyledProject image={optimizedImage} ref={ref}
       onClick={toggleInfo}
       onMouseEnter={showInfo}
       onMouseLeave={hideInfo}
@@ -152,17 +132,3 @@ const Project = ({ project }) => {
 }
 
 export default Project
-
-// <li className="navbar__section"
-//     ref={ref}
-//     onClick={toggleSubmenu}
-//     onMouseEnter={showSubmenu}'"'
-//     onMouseLeave={hideSubmenu}
-// >
-//   <a
-//     className={ (section === "Artistes" || section === "Visites") ? "navbar__section--name active" : "navbar__section--name"}
-//   >
-//     Patrimoine
-//   </a>
-//   { isSubmenuOpen &&  <Submenu />}
-// </li>

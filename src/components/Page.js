@@ -32,6 +32,8 @@ const StyledPage = styled.div `
 const Inner = styled.main`
   flex: 1 0 auto;
   width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
   padding-top: calc(${props => props.theme.heightHeader} + ${props => props.theme.innerVerticalPadding});
   padding-bottom: ${props => props.theme.innerVerticalPadding};
   margin: 0 auto;

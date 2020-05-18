@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import { graphql } from "gatsby"
+import { Image, Transformation } from 'cloudinary-react';
 
 import Page from "../components/Page";
 import PageTitle from "../components/PageTitle";
@@ -59,6 +60,7 @@ const Photography = ({ data }) => {
       <PageTitle title="Photographie"/>
       <div>
         {categories.map(({ node }, i) => {
+          const photoID = 'MonSite' + node.frontmatter.coverPicture[0].match(/MonSite(.+)/)[1];
           if (i%2 === 0) {
             return (
               <StyledCat side='right' key={node.fields.slug}>
@@ -68,7 +70,9 @@ const Photography = ({ data }) => {
                   </h2>
                 </Link>
                 <Link to={node.fields.slug}>
-                  <img src={node.frontmatter.coverPicture} alt={node.frontmatter.title}/>
+                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={node.frontmatter.title}>
+                    <Transformation quality="auto" fetch_format="auto" width="800" crop="fit"/>
+                  </Image>
                 </Link>
               </StyledCat>
             )
@@ -76,7 +80,9 @@ const Photography = ({ data }) => {
             return(
               <StyledCat side='left' key={node.fields.slug}>
                 <Link to={node.fields.slug}>
-                  <img src={node.frontmatter.coverPicture} alt={node.frontmatter.title}/>
+                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={node.frontmatter.title}>
+                    <Transformation quality="auto" fetch_format="auto" width="800" crop="fit"/>
+                  </Image>
                 </Link>
                 <Link to={node.fields.slug}>
                   <h2>
