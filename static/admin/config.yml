@@ -167,15 +167,6 @@ collections:
             label: "Image",
             name: "image",
             widget: image,
-            # media_library: {
-            #  config: {
-            #    default_transformations: {
-            #      width: 800,
-            #      quality: auto,
-            #      crop: fill,
-            #      effect: grayscale,
-            #   }
-            # }
           }
         }
       - {
