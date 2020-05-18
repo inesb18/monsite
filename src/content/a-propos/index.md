@@ -1,6 +1,7 @@
 ---
 photo:
-  image: /assets/me.jpeg
+  image:
+    - https://res.cloudinary.com/dfzwvorfr/image/upload/v1589556029/MonSite/Divers/me_yx65i2.jpg
   imageAlt: Inès Belghiti
 contactLinks:
   linkedInURL: https://www.linkedin.com/in/ines-belghiti/

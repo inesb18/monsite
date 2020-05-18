@@ -1,6 +1,7 @@
 ---
 projects:
-  - image: /assets/blink.png
+  - image:
+      - https://res.cloudinary.com/dfzwvorfr/image/upload/v1589569733/MonSite/Web/blink_pxsitv.png
     name: Blink
     imageAlt: Blink app
     description: Application web pour aider à combattre la sécheresse oculaire
@@ -9,7 +10,8 @@ projects:
       - Product Owner
       - Contribution au développement Front
       - Contribution au développement Back
-  - image: /assets/logements-solidaires.png
+  - image:
+      - https://res.cloudinary.com/dfzwvorfr/image/upload/v1589569733/MonSite/Web/logements-solidaires_flm4i0.png
     imageAlt: Plateforme Les Logements Solidaires
     name: Les Logements Solidaires
     description: Plateforme de solidarité pour proposer des logements gratuits aux
@@ -19,7 +21,8 @@ projects:
       - Design
       - Contribution au développement Front
       - Contribution au développement Back
-  - image: /assets/amale.png
+  - image:
+      - https://res.cloudinary.com/dfzwvorfr/image/upload/v1589569730/MonSite/Web/amale_a9jou3.png
     imageAlt: Portfolio/Blog
     name: Portfolio-Blog
     description: Site personnel avec CMS
@@ -27,7 +30,8 @@ projects:
     roles:
       - Design
       - Développement intégral
-  - image: /assets/bijou-for-you.png
+  - image:
+      - https://res.cloudinary.com/dfzwvorfr/image/upload/v1589569732/MonSite/Web/bijou-for-you_eppp9a.png
     imageAlt: Bijou For You
     name: Bijou For You
     description: Plateforme de location de bijoux entre particuliers
