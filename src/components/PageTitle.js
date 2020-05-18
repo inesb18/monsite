@@ -18,7 +18,7 @@ const StyledTitle = styled.h1 `
     z-index: -1;
   }
   @media (max-width: 768px) {
-    font-size: 4rem;
+    font-size: ${props => props.size === "small" ? "2.8rem" : "4rem"};
     &:after {
       height: 6rem;
     }

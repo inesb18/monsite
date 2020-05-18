@@ -21,11 +21,11 @@ const StyledCat = styled.div`
   img {
     width: 100%;
     max-width: 800px;
-    -webkit-filter: drop-shadow(20px 20px 0 ${props => props.theme.veryLightPeach});
-    filter: drop-shadow(20px 20px 0 ${props => props.theme.veryLightPeach});
+    -webkit-filter: drop-shadow(2rem 2rem 0 ${props => props.theme.veryLightPeach});
+    filter: drop-shadow(2rem 2rem 0 ${props => props.theme.veryLightPeach});
     &:hover {
-      -webkit-filter: drop-shadow(20px 20px 0 ${props => props.theme.lightPeach});
-      filter: drop-shadow(20px 20px 0 ${props => props.theme.lightPeach});
+      -webkit-filter: drop-shadow(2rem 2rem 0 ${props => props.theme.lightPeach});
+      filter: drop-shadow(2rem 2rem 0 ${props => props.theme.lightPeach});
     }
   }
   h2 {
@@ -46,8 +46,23 @@ const StyledCat = styled.div`
       width: 40%;
       height: 6px;
     }
-    @media (max-width: 768px) {
+  }
+  @media (max-width: 768px) {
+    h2 {
       font-size: 1.4rem;
+    }
+    img {
+      -webkit-filter: drop-shadow(1rem 1rem 0 ${props => props.theme.veryLightPeach});
+      filter: drop-shadow(1rem 1rem 0 ${props => props.theme.veryLightPeach});
+      &:hover {
+        -webkit-filter: drop-shadow(1rem 1rem 0 ${props => props.theme.lightPeach});
+        filter: drop-shadow(1rem 1rem 0 ${props => props.theme.lightPeach});
+      }
+    }
+  }
+  @media (hover: hover) {
+    img {
+      transition: all 0.4s;
     }
   }
 `;
