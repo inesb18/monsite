@@ -11,12 +11,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: 'gatsby-plugin-netlify-cms',
-      options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
-      },
-    },
     "gatsby-remark-source-name",
     {
       resolve: `gatsby-source-filesystem`,
@@ -40,6 +34,12 @@ module.exports = {
         theme_color: `#663399`,
         display: `standalone`,
         icon: `static/favicon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-netlify-cms',
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`,
       },
     },
   ],

@@ -45,12 +45,12 @@ const StyledText = styled.div`
   }
 `;
 
-const About = ({ data }) => {
-  const photo = data.about.edges[0].node.frontmatter.photo;
-  const contentHTML = data.about.edges[0].node.html;
+export const AboutTemplate = ({ page }) => {
+  const photo = page.frontmatter.photo;
+  const contentHTML = page.html;
   const photoID = 'MonSite' + photo.image[0].match(/MonSite(.+)/)[1];
   return (
-    <Page section="À propos">
+    <div>
       <StyledHeaderAbout>
         <PageTitle title="À propos"/>
         <div className="photo">
@@ -60,6 +60,15 @@ const About = ({ data }) => {
         </div>
       </StyledHeaderAbout>
       <StyledText dangerouslySetInnerHTML={{ __html: contentHTML }} />
+    </div>
+  )
+}
+
+const About = ({ data }) => {
+  const page = data.about.edges[0].node;
+  return (
+    <Page section="À propos">
+      <AboutTemplate page={page}/>
     </Page>
   )
 }
