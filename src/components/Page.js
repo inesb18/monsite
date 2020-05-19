@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
-
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import SEO from '../components/SEO';
+import "./main.css";
+import Header from './Header';
+import Footer from './Footer';
+import SEO from './SEO';
 
 const theme = {
   peach: '#FB9F89',
@@ -51,8 +51,6 @@ const Inner = styled.main`
 `;
 
 const GlobalStyle = createGlobalStyle`
-  import "~slick-carousel/slick/slick.css";
-  import "~slick-carousel/slick/slick-theme.css";
   html {
     height: 100%;
     box-sizing: border-box;
