@@ -50,9 +50,9 @@ const Inner = styled.main`
   }
 `;
 
-// min-height: calc(100vh + 6rem - 5rem - 4rem - 6rem); //6rem: padding of content, 5rem: height of footer, 4rem: margin-top of footer, 6rem height of header
 const GlobalStyle = createGlobalStyle`
-
+  import "~slick-carousel/slick/slick.css";
+  import "~slick-carousel/slick/slick-theme.css";
   html {
     height: 100%;
     box-sizing: border-box;

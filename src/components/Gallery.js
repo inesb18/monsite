@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Masonry from 'react-masonry-component';
 import styled from 'styled-components';
 
+import SimpleSlider from './SimpleSlider';
+
 const StyledImage = styled.img`
   width: 50%;
   padding: 0.3rem;
@@ -10,7 +12,6 @@ const StyledImage = styled.img`
     padding: 0.2rem;
   }
 `;
-
 
 const StyledGallery = styled.div`
   .loading {
@@ -37,7 +38,6 @@ const StyledModal = styled.div`
     h2 {
       margin: 0;
       font-weight: normal;
-      color: ${props => props.theme.darkPeach};
     }
   }
   .closeButton {
@@ -106,19 +106,22 @@ const Gallery = ({ photos, alt }) => {
     setModalOpen
   } = useModalOpen(false);
 
-  const toggleModal = () => {
+  const [currentPic, setCurrentPic] = useState(0);
+
+  const toggleModal = (i = 0) => {
     setModalOpen(!isModalOpen);
     if (isModalOpen) {
+      setCurrentPic(i);
       document.body.style.overflow = "visible";
     } else {
       document.body.style.overflow = "hidden";
     }
   };
 
-  const childElements = photos.map((photo) => {
+  const childElements = photos.map((photo, i) => {
     const optimizedImage = photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_800`);
     return (
-      <StyledImage key={photo[0]} src={optimizedImage} alt={alt} onClick={toggleModal}/>
+      <StyledImage key={photo[0]} src={optimizedImage} alt={alt} onClick={() => toggleModal(i)}/>
     );
   });
 
@@ -144,6 +147,18 @@ const Gallery = ({ photos, alt }) => {
               <div></div>
             </div>
           </div>
+          <SimpleSlider slickGoTo={currentPic}>
+            {
+              photos.map((photo) => {
+                const optimizedImage = photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_1500`);
+                return (
+                  <div key={photo[0]} className="imageSlideWrap" >
+                    <img src={optimizedImage} alt={alt} className="imageSlider" />
+                  </div>
+                );
+              })
+            }
+          </SimpleSlider>
         </StyledModal>
       </StyledGallery>
   )
