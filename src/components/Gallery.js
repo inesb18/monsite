@@ -3,6 +3,7 @@ import Masonry from 'react-masonry-component';
 import styled from 'styled-components';
 
 import SimpleSlider from './SimpleSlider';
+import Modal from './Modal';
 
 const StyledImage = styled.img`
   width: 50%;
@@ -47,52 +48,6 @@ const StyledGallery = styled.div`
   }
 `;
 
-const StyledModal = styled.div`
-  z-index: 3;
-  position: fixed;
-  background: white;
-  top: 0;
-  left: 0;
-  padding: 2rem;
-  height: 100%;
-  width: 100%;
-  .modalHeader {
-    display: flex;
-    justify-content: space-between;
-    h2 {
-      margin: 0;
-      font-weight: normal;
-    }
-  }
-  .closeButton {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
-    &:focus {
-      outline: none;
-    }
-    > div {
-      width: 2rem;
-      height: 0.28rem;
-      background: ${props => props.theme.peach};
-      border-radius: 10px;
-      transform-origin: 1px;
-      :first-child {
-        transform: rotate(45deg);
-      }
-      :nth-child(2) {
-        opacity: 0;
-      }
-      :last-child {
-        transform: rotate(-45deg);
-      }
-    }
-  }
-`;
-
 
 function useModalOpen(initialIsVisible) {
   const [isModalOpen, setModalOpen] = useState(initialIsVisible);
@@ -101,14 +56,12 @@ function useModalOpen(initialIsVisible) {
   const handleHideDropdown = (event) => {
     if (event.key === "Escape") {
       setModalOpen(false);
-      document.body.style.overflow = "visible";
     }
   };
 
   const handleClickOutside = event => {
     if (ref.current && !ref.current.contains(event.target)) {
       setModalOpen(false);
-      document.body.style.overflow = "visible";
     }
   };
 
@@ -137,12 +90,10 @@ const Gallery = ({ photos, alt }) => {
 
   const openModal = (i) => {
     setCurrentPic(i);
-    document.body.style.overflow = "hidden";
     setModalOpen(true);
   };
 
   const closeModal = () => {
-    document.body.style.overflow = "visible";
     setModalOpen(false);
   };
 
@@ -168,15 +119,7 @@ const Gallery = ({ photos, alt }) => {
         </Masonry>
         {
           isModalOpen &&
-          <StyledModal show={isModalOpen}>
-            <div className="modalHeader">
-              <h2>{alt}</h2>
-              <div className="closeButton" onClick={closeModal}>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-            </div>
+          <Modal title= {alt} closeMethod={closeModal}>
             <SimpleSlider initialSlide={currentPic}>
               {
                 photos.map((photo) => {
@@ -189,7 +132,8 @@ const Gallery = ({ photos, alt }) => {
                 })
               }
             </SimpleSlider>
-          </StyledModal>
+          </Modal>
+
         }
       </StyledGallery>
   )

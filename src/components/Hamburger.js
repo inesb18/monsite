@@ -6,6 +6,7 @@ import CustomLink from './CustomLink';
   // transform: ${({ isMenuOpen }) => isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'};
 const StyledHamburgerMenu = styled.div`
   transform: ${({ isMenuOpen }) => isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'};
+  transition: transform 0.3s ease-in-out;
   z-index: -1;
   display: flex;
   flex-direction: column;
@@ -18,7 +19,6 @@ const StyledHamburgerMenu = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  transition: transform 0.3s ease-in-out;
   ul {
     padding: 0;
     margin: 0;
