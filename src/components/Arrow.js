@@ -13,6 +13,12 @@ const StyledArrow = styled.div`
   &:first-child: {
     margin: right: 1rem;
   }
+  svg {
+    color: ${props => props.theme.peach};
+    &:hover {
+      color: ${props => props.theme.darkPeach};
+    }
+  }
 `;
 
 const Arrow = ({ direction, handleClick }) => {

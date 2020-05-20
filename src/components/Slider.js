@@ -1,9 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
-import SliderContent from './SliderContent'
-import Slide from './Slide'
-import Arrow from './Arrow'
+import SliderContent from './SliderContent';
+import Slide from './Slide';
+import Arrow from './Arrow';
+
+// handleNextPrev(e) {
+//   if (e.keyCode === 37) {
+//     this.slider.slickPrev();
+//   } else if (e.keyCode === 39) {
+//     this.slider.slickNext();
+//   }
+// };
+
+// goTo(i) {
+//   this.slider.slickGoTo(i,true);
+// }
+
+// componentDidMount() {
+//   document.addEventListener("keydown", this.handleNextPrev, true);
+// }
+
+// componentWillUnmount() {
+//   document.removeEventListener("keydown", this.handleNextPrev, true);
+// }
 
 const StyledSlider = styled.div`
   position: relative;
@@ -37,12 +57,14 @@ const Slider = (props) => {
   const { translate, transition, activeSlide, _slides } = state;
 
   const transitionRef = useRef();
-  const resizeRef = useRef()
+  const resizeRef = useRef();
+  const keydownRef = useRef();
 
 
   useEffect(() => {
     transitionRef.current = smoothTransition
     resizeRef.current = handleResize
+    keydownRef.current = handleKeydown
   })
 
   useEffect(() => {
@@ -52,13 +74,18 @@ const Slider = (props) => {
       }
     }
     const resize = () => {
-      resizeRef.current()
+      resizeRef.current();
+    }
+    const keydown = (e) => {
+      keydownRef.current(e);
     }
     const transitionEnd = window.addEventListener('transitionend', smooth)
     const onResize = window.addEventListener('resize', resize)
+    const onKeydown = window.addEventListener('keydown', keydown)
     return () => {
       window.removeEventListener('transitionend', transitionEnd)
       window.removeEventListener('resize', onResize)
+      window.removeEventListener('keydown', keydown)
     }
   }, [])
 
@@ -96,6 +123,14 @@ const Slider = (props) => {
   const handleResize = () => {
     setState({ ...state, translate: getWidth(), transition: 0 })
   }
+
+  const handleKeydown = (e) => {
+    if (e.keyCode === 37) {
+      prevSlide();
+    } else if (e.keyCode === 39) {
+      nextSlide();
+    }
+  };
 
   const prevSlide = () => {
     setState({
