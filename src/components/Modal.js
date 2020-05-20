@@ -11,37 +11,29 @@ const StyledModal = styled.div`
   height: 100%;
   width: 100%;
   .modalHeader {
-    display: flex;
-    justify-content: space-between;
     h2 {
       margin: 0;
       font-weight: normal;
+      text-align: center;
     }
   }
   .closeButton {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
-    &:focus {
-      outline: none;
-    }
+    float: right;
+    width: fit-content;
     > div {
-      width: 2rem;
-      height: 0.28rem;
-      background: ${props => props.theme.peach};
-      border-radius: 10px;
-      transform-origin: 1px;
-      :first-child {
-        transform: rotate(45deg);
-      }
-      :nth-child(2) {
-        opacity: 0;
-      }
-      :last-child {
-        transform: rotate(-45deg);
+      cursor: pointer;
+      height: 2rem;
+      width: 4px;
+      margin-left: 1rem;
+      background-color: ${props => props.theme.peach};
+      transform: rotate(45deg);
+      Z-index: 1;
+      > div {
+        height: 2rem;
+        width: 4px;
+        background-color: ${props => props.theme.peach};
+        transform: rotate(90deg);
+        Z-index: 2;
       }
     }
   }
@@ -59,12 +51,12 @@ const Modal = ({ title, children, closeMethod }) => {
   return (
       <StyledModal>
         <div className="modalHeader">
-          <h2>{title}</h2>
           <div className="closeButton" onClick={closeMethod}>
-            <div></div>
-            <div></div>
-            <div></div>
+            <div>
+              <div></div>
+            </div>
           </div>
+          <h2>{title}</h2>
         </div>
         {children}
       </StyledModal>
