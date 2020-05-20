@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { Swipeable } from 'react-swipeable';
+import Swipe from 'react-easy-swipe';
 
 import SliderContent from './SliderContent';
 import Slide from './Slide';
@@ -134,7 +134,7 @@ const Slider = (props) => {
 
   return (
     <div>
-      <Swipeable onSwipingLeft={nextSlide} onSwipingRight={prevSlide}>
+      <Swipe onSwipeLeft={nextSlide} onSwipeRight={prevSlide}>
         <StyledSlider>
           <SliderContent
             translate={translate}
@@ -146,7 +146,7 @@ const Slider = (props) => {
             ))}
           </SliderContent>
         </StyledSlider>
-      </Swipeable>
+      </Swipe>
       <StyledArrows>
         <Arrow direction="left" handleClick={prevSlide} />
         <Arrow direction="right" handleClick={nextSlide}/>
