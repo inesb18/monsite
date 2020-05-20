@@ -77,12 +77,14 @@ function useModalOpen(initialIsVisible) {
   const handleHideDropdown = (event) => {
     if (event.key === "Escape") {
       setModalOpen(false);
+      document.body.style.overflow = "visible";
     }
   };
 
   const handleClickOutside = event => {
     if (ref.current && !ref.current.contains(event.target)) {
       setModalOpen(false);
+      document.body.style.overflow = "visible";
     }
   };
 
@@ -109,8 +111,7 @@ const Gallery = ({ photos, alt }) => {
   const sliderRef = useRef();
 
   const openModal = (i) => {
-    console.log(i);
-    sliderRef.current.goTo(i);
+    sliderRef.current.goTo(i, true);
     setModalOpen(true);
     document.body.style.overflow = "hidden";
   };

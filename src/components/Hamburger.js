@@ -85,12 +85,14 @@ function useMenuOpen(initialIsVisible) {
   const handleHideDropdown = (event) => {
     if (event.key === "Escape") {
       setMenuOpen(false);
+      document.body.style.overflow = "visible";
     }
   };
 
   const handleClickOutside = event => {
     if (ref.current && !ref.current.contains(event.target)) {
       setMenuOpen(false);
+      document.body.style.overflow = "visible";
     }
   };
 

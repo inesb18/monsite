@@ -59,12 +59,10 @@ export default class SimpleSlider extends Component {
   }
 
   componentDidMount() {
-    console.log("mounted");
     document.addEventListener("keydown", this.handleNextPrev, true);
   }
 
   componentWillUnmount() {
-    console.log("unmounted");
     document.removeEventListener("keydown", this.handleNextPrev, true);
   }
 
