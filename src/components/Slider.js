@@ -15,8 +15,12 @@ const StyledSlider = styled.div`
 `;
 
 const StyledArrows = styled.div`
+  padding: 0 2rem;
   display: flex;
   justify-content: center;
+  @media screen and (orientation: portrait) and (max-width: 768px) {
+    justify-content: space-between;
+  }
 `;
 
 const Slider = (props) => {

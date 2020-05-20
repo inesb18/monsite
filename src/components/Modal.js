@@ -12,7 +12,7 @@ const StyledModal = styled.div`
   .modalHeader {
     height: 8rem;
     h2 {
-      padding: 2rem;
+      padding: 2rem 2.2rem;;
       margin: 0;
       font-weight: normal;
       text-align: center;
@@ -38,6 +38,11 @@ const StyledModal = styled.div`
         transform: rotate(90deg);
         Z-index: 2;
       }
+    }
+  }
+  @media (max-width: 768px) {
+    .modalHeader h2 {
+      font-size: 1.8rem;
     }
   }
 `;

@@ -10,8 +10,12 @@ const StyledArrow = styled.div`
   cursor: pointer;
   transition: transform ease-in 0.1s;
   transform: translateX(${props => props.direction === 'left' ? '-1' : '1'}rem);
-  &:first-child: {
+  &:first-child {
     margin: right: 1rem;
+    padding-left: 2rem;
+  }
+  &:nth-child(2) {
+    padding-right: 2rem;
   }
   svg {
     color: ${props => props.theme.peach};
