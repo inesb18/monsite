@@ -9,7 +9,7 @@ import Arrow from './Arrow';
 const StyledSlider = styled.div`
   position: relative;
   height: calc(100vh - 8rem - 6rem);
-  width: 100%;
+  width: min(1600px, 100%);
   margin: 0 auto;
   overflow: hidden;
 `;
@@ -19,7 +19,7 @@ const StyledArrows = styled.div`
   justify-content: center;
 `;
 
-const getWidth = () => window.innerWidth;
+const getWidth = () => Math.min(window.innerWidth, 1600);
 
 const Slider = (props) => {
   const { slides } = props;
