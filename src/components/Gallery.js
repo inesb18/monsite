@@ -81,12 +81,9 @@ const Gallery = ({ photos, alt }) => {
   const [visible, setVisible] = useState(false);
   const [currentPic, setCurrentPic] = useState();
   const {
-    ref,
     isModalOpen,
     setModalOpen
   } = useModalOpen(false);
-
-  const sliderRef = useRef();
 
   const openModal = (i) => {
     setCurrentPic(i);

@@ -1,18 +1,19 @@
 import React, { useState, useRef, useEffect } from "react";
+import {Transition} from 'react-spring/renderprops';
 import styled from 'styled-components';
 
 import CustomLink from './CustomLink';
 
+  // @keyframes slideFromLeft {
+  //   0% {
+  //     transform: translateX(-100%);
+  //   }
+  //   100% {
+  //     transform: translateX(0);
+  //   }
+  // }
+  // animation: slideFromLeft 0.3s linear;
 const StyledHamburgerMenu = styled.div`
-  @keyframes slideFromLeft {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-  animation: slideFromLeft 0.3s linear;
   z-index: -1;
   display: flex;
   flex-direction: column;
@@ -178,7 +179,16 @@ const Hamburger = ({ section, menuItems }) => {
           <div></div>
           <div></div>
       </StyledHamburger>
-      {isMenuOpen && <HamburgerMenu isMenuOpen={isMenuOpen} section={section} menuItems={menuItems}/>}
+      <Transition
+          items={isMenuOpen}
+          // from={{ transform: 'translateX(-100%)' }}
+          // enter={{ transform: 'translateX(0)' }}
+          // leave={{ transform: 'translateX(-100%)' }}>
+          from={{ opacity: 0 }}
+          enter={{ opacity: 1 }}
+          leave={{ opacity: 0 }}>
+          {isMenuOpen => isMenuOpen && (props => <HamburgerMenu style={props} section={section} menuItems={menuItems}/>)}
+      </Transition>
     </div>
   )
 }
