@@ -21,12 +21,13 @@ const StyledArrows = styled.div`
 
 const Slider = (props) => {
   const getWidth = () => {
-    if (window) {
+    if (typeof window !== `undefined`) {
       return Math.min(window.innerWidth, 1600);
     } else {
       return(1600);
     }
   };
+
   const { slides } = props;
   const initialSlide = props.initialSlide || 0;
 
