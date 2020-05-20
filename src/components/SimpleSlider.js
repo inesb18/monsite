@@ -72,7 +72,7 @@ export default class SimpleSlider extends Component {
       speed: 500,
       slidesToShow: 1,
       swipeToSlide: true,
-      arrows: false
+      arrows: true
     };
     return (
       <StyledCarousel>

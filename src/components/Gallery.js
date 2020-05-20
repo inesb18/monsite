@@ -13,10 +13,35 @@ const StyledImage = styled.img`
   }
 `;
 
-const StyledGallery = styled.div`
-  .loading {
-    display: ${ props => props.visible ? "none" : "block"};
+const StyledLoading = styled.p`
+  width: fit-content;
+  display: ${ props => props.visible ? "none" : "block"};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+      to right,
+      ${props => props.theme.darkPeach},
+      ${props => props.theme.darkPeach} 50%,
+      ${props => props.theme.black} 50%);
+  background-size: 200% 100%;
+  animation: fillIn 1s linear infinite;
+  @keyframes fillIn {
+    0% {
+      background-position: 100%;
+    }
+    10% {
+      background-position: 100%;
+    }
+    50% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 0%;
+    }
   }
+`;
+
+const StyledGallery = styled.div`
   .masonry {
     visibility: ${ props => props.visible ? "visible" : "hidden"};
   }
@@ -134,7 +159,7 @@ const Gallery = ({ photos, alt }) => {
 
   return (
       <StyledGallery visible={visible}>
-        <p className="loading">Loading...</p>
+        <StyledLoading visible={visible}>Chargement...</StyledLoading>
         <Masonry
           className="masonry"
           onImagesLoaded={handleImagesLoaded}
