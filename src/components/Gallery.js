@@ -48,7 +48,6 @@ const StyledGallery = styled.div`
 `;
 
 const StyledModal = styled.div`
-  display: ${props => props.show ? "block" : "none"};
   z-index: 3;
   position: fixed;
   background: white;
@@ -127,6 +126,7 @@ function useModalOpen(initialIsVisible) {
 
 const Gallery = ({ photos, alt }) => {
   const [visible, setVisible] = useState(false);
+  const [currentPic, setCurrentPic] = useState();
   const {
     ref,
     isModalOpen,
@@ -136,14 +136,14 @@ const Gallery = ({ photos, alt }) => {
   const sliderRef = useRef();
 
   const openModal = (i) => {
-    sliderRef.current.goTo(i, true);
-    setModalOpen(true);
+    setCurrentPic(i);
     document.body.style.overflow = "hidden";
+    setModalOpen(true);
   };
 
   const closeModal = () => {
-    setModalOpen(false);
     document.body.style.overflow = "visible";
+    setModalOpen(false);
   };
 
   const childElements = photos.map((photo, i) => {
@@ -166,28 +166,31 @@ const Gallery = ({ photos, alt }) => {
         >
           {childElements}
         </Masonry>
-        <StyledModal show={isModalOpen}>
-          <div className="modalHeader">
-            <h2>{alt}</h2>
-            <div className="closeButton" onClick={closeModal}>
-              <div></div>
-              <div></div>
-              <div></div>
+        {
+          isModalOpen &&
+          <StyledModal show={isModalOpen}>
+            <div className="modalHeader">
+              <h2>{alt}</h2>
+              <div className="closeButton" onClick={closeModal}>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
             </div>
-          </div>
-          <SimpleSlider ref={sliderRef}>
-            {
-              photos.map((photo) => {
-                const optimizedImage = photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_1500`);
-                return (
-                  <div key={photo[0]} className="imageSlideWrap" >
-                    <img src={optimizedImage} alt={alt} className="imageSlider" />
-                  </div>
-                );
-              })
-            }
-          </SimpleSlider>
-        </StyledModal>
+            <SimpleSlider initialSlide={currentPic}>
+              {
+                photos.map((photo) => {
+                  const optimizedImage = photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_1500`);
+                  return (
+                    <div key={photo[0]} className="imageSlideWrap" >
+                      <img src={optimizedImage} alt={alt} className="imageSlider" />
+                    </div>
+                  );
+                })
+              }
+            </SimpleSlider>
+          </StyledModal>
+        }
       </StyledGallery>
   )
 }

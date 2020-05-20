@@ -55,7 +55,7 @@ export default class SimpleSlider extends Component {
   };
 
   goTo(i) {
-    this.slider.slickGoTo(i);
+    this.slider.slickGoTo(i,true);
   }
 
   componentDidMount() {
@@ -72,7 +72,8 @@ export default class SimpleSlider extends Component {
       speed: 500,
       slidesToShow: 1,
       swipeToSlide: true,
-      arrows: true
+      arrows: true,
+      initialSlide: this.props.initialSlide
     };
     return (
       <StyledCarousel>
