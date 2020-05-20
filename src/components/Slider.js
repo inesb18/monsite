@@ -5,26 +5,6 @@ import SliderContent from './SliderContent';
 import Slide from './Slide';
 import Arrow from './Arrow';
 
-// handleNextPrev(e) {
-//   if (e.keyCode === 37) {
-//     this.slider.slickPrev();
-//   } else if (e.keyCode === 39) {
-//     this.slider.slickNext();
-//   }
-// };
-
-// goTo(i) {
-//   this.slider.slickGoTo(i,true);
-// }
-
-// componentDidMount() {
-//   document.addEventListener("keydown", this.handleNextPrev, true);
-// }
-
-// componentWillUnmount() {
-//   document.removeEventListener("keydown", this.handleNextPrev, true);
-// }
-
 const StyledSlider = styled.div`
   position: relative;
   height: calc(100vh - 8rem - 6rem);
@@ -42,16 +22,31 @@ const getWidth = () => window.innerWidth;
 
 const Slider = (props) => {
   const { slides } = props;
+  const initialSlide = props.initialSlide || 0;
 
-  const firstSlide = slides[0];
-  const secondSlide = slides[1];
-  const lastSlide = slides[slides.length - 1];
+  const firstSlide = slides[0]
+  const secondSlide = slides[1]
+  const lastSlide = slides[slides.length - 1]
+
+  const getSlides = (index) => {
+    let slidesFromIndex = [];
+    if (index === slides.length - 1) {
+      slidesFromIndex = [slides[slides.length - 2], lastSlide, firstSlide]
+    }
+    else if (index === 0) {
+      slidesFromIndex = [lastSlide, firstSlide, secondSlide]
+    }
+    else {
+      slidesFromIndex = slides.slice(index - 1, index + 2)
+    }
+    return slidesFromIndex;
+  }
 
   const [state, setState] = useState({
-    activeSlide: 0,
+    activeSlide: initialSlide,
     translate: getWidth(),
     transition: 0.45,
-    _slides: [lastSlide, firstSlide, secondSlide]
+    _slides: getSlides(initialSlide)
   })
 
   const { translate, transition, activeSlide, _slides } = state;
@@ -79,13 +74,13 @@ const Slider = (props) => {
     const keydown = (e) => {
       keydownRef.current(e);
     }
-    const transitionEnd = window.addEventListener('transitionend', smooth)
-    const onResize = window.addEventListener('resize', resize)
-    const onKeydown = window.addEventListener('keydown', keydown)
+    const transitionEnd = window.addEventListener('transitionend', smooth);
+    const onResize = window.addEventListener('resize', resize);
+    const onKeydown = window.addEventListener('keydown', keydown);
     return () => {
-      window.removeEventListener('transitionend', transitionEnd)
-      window.removeEventListener('resize', onResize)
-      window.removeEventListener('keydown', keydown)
+      window.removeEventListener('transitionend', transitionEnd);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('keydown', onKeydown);
     }
   }, [])
 
@@ -102,19 +97,9 @@ const Slider = (props) => {
   }
 
   const smoothTransition = () => {
-    let _slides = []
-
-    // We're at the last slide.
-    if (activeSlide === slides.length - 1)
-      _slides = [slides[slides.length - 2], lastSlide, firstSlide]
-    // We're back at the first slide. Just reset to how it was on initial render
-    else if (activeSlide === 0) _slides = [lastSlide, firstSlide, secondSlide]
-    // Create an array of the previous last slide, and the next two slides that follow it.
-    else _slides = slides.slice(activeSlide - 1, activeSlide + 2)
-
     setState({
       ...state,
-      _slides,
+      _slides: getSlides(activeSlide),
       transition: 0,
       translate: getWidth()
     })

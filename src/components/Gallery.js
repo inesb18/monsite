@@ -106,7 +106,7 @@ const Gallery = ({ photos, alt }) => {
     setVisible(true);
   }
 
-  const pictures = photos.map(photo => photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_1500`));
+  const pictures = photos.map(photo => photo[0]);
 
   return (
       <StyledGallery visible={visible}>
@@ -120,7 +120,7 @@ const Gallery = ({ photos, alt }) => {
         {
           isModalOpen &&
           <Modal title= {alt} closeMethod={closeModal}>
-            <Slider slides={pictures}/>
+            <Slider slides={pictures} initialSlide={currentPic}/>
           </Modal>
         }
       </StyledGallery>
