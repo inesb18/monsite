@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Masonry from 'react-masonry-component';
 import styled from 'styled-components';
 
-import SimpleSlider from './SimpleSlider';
+// import SimpleSlider from './SimpleSlider';
+import Slider from '../components/Slider';
 import Modal from './Modal';
 
 const StyledImage = styled.img`
@@ -105,6 +106,8 @@ const Gallery = ({ photos, alt }) => {
     setVisible(true);
   }
 
+  const pictures = photos.map(photo => photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_1500`));
+
   return (
       <StyledGallery visible={visible}>
         <StyledLoading visible={visible}>Chargement...</StyledLoading>
@@ -117,20 +120,8 @@ const Gallery = ({ photos, alt }) => {
         {
           isModalOpen &&
           <Modal title= {alt} closeMethod={closeModal}>
-            <SimpleSlider initialSlide={currentPic}>
-              {
-                photos.map((photo) => {
-                  const optimizedImage = photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_1500`);
-                  return (
-                    <div key={photo[0]} className="imageSlideWrap" >
-                      <img src={optimizedImage} alt={alt} className="imageSlider" />
-                    </div>
-                  );
-                })
-              }
-            </SimpleSlider>
+            <Slider slides={pictures}/>
           </Modal>
-
         }
       </StyledGallery>
   )

@@ -7,21 +7,24 @@ const StyledModal = styled.div`
   background: white;
   top: 0;
   left: 0;
-  padding: 2rem;
   height: 100%;
   width: 100%;
   .modalHeader {
+    height: 8rem;
     h2 {
+      padding: 2rem;
       margin: 0;
       font-weight: normal;
       text-align: center;
     }
   }
   .closeButton {
-    float: right;
-    width: fit-content;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2rem;
+    cursor: pointer;
     > div {
-      cursor: pointer;
       height: 2rem;
       width: 4px;
       margin-left: 1rem;
