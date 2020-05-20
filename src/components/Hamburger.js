@@ -3,10 +3,16 @@ import styled from 'styled-components';
 
 import CustomLink from './CustomLink';
 
-  // transform: ${({ isMenuOpen }) => isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'};
 const StyledHamburgerMenu = styled.div`
-  transform: ${({ isMenuOpen }) => isMenuOpen ? 'translateX(0)' : 'translateX(-100%)'};
-  transition: transform 0.3s ease-in-out;
+  @keyframes slideFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  animation: slideFromLeft 0.3s linear;
   z-index: -1;
   display: flex;
   flex-direction: column;
@@ -53,11 +59,20 @@ const StyledHamburgerMenu = styled.div`
 `;
 
 class HamburgerMenu extends React.Component {
+
+  componentDidMount() {
+    document.body.style.overflow = "hidden";
+  }
+
+  componentWillUnmount() {
+    document.body.style.overflow = "visible";
+  }
+
   render() {
     const section = this.props.section;
     const menuItems = this.props.menuItems;
     return (
-      <StyledHamburgerMenu isMenuOpen={this.props.isMenuOpen}>
+      <StyledHamburgerMenu>
         <ul>
           {menuItems.map((menuItem) => {
             return (
@@ -85,14 +100,12 @@ function useMenuOpen(initialIsVisible) {
   const handleHideDropdown = (event) => {
     if (event.key === "Escape") {
       setMenuOpen(false);
-      document.body.style.overflow = "visible";
     }
   };
 
   const handleClickOutside = event => {
     if (ref.current && !ref.current.contains(event.target)) {
       setMenuOpen(false);
-      document.body.style.overflow = "visible";
     }
   };
 
@@ -156,11 +169,6 @@ const Hamburger = ({ section, menuItems }) => {
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
-    if (isMenuOpen) {
-      document.body.style.overflow = "visible";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
   };
 
   return (
@@ -170,7 +178,7 @@ const Hamburger = ({ section, menuItems }) => {
           <div></div>
           <div></div>
       </StyledHamburger>
-      <HamburgerMenu isMenuOpen={isMenuOpen} section={section} menuItems={menuItems}/>
+      {isMenuOpen && <HamburgerMenu isMenuOpen={isMenuOpen} section={section} menuItems={menuItems}/>}
     </div>
   )
 }
