@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import { Swipeable } from 'react-swipeable';
 
 import SliderContent from './SliderContent';
 import Slide from './Slide';
@@ -88,14 +89,6 @@ const Slider = (props) => {
     if (transition === 0) setState({ ...state, transition: 0.45 })
   }, [transition])
 
-  const nextSlide = () => {
-    setState({
-      ...state,
-      translate: translate + getWidth(),
-      activeSlide: activeSlide === slides.length - 1 ? 0 : activeSlide + 1
-    })
-  }
-
   const smoothTransition = () => {
     setState({
       ...state,
@@ -117,6 +110,14 @@ const Slider = (props) => {
     }
   };
 
+  const nextSlide = () => {
+    setState({
+      ...state,
+      translate: translate + getWidth(),
+      activeSlide: activeSlide === slides.length - 1 ? 0 : activeSlide + 1
+    })
+  }
+
   const prevSlide = () => {
     setState({
       ...state,
@@ -127,17 +128,19 @@ const Slider = (props) => {
 
   return (
     <div>
-      <StyledSlider>
-        <SliderContent
-          translate={translate}
-          transition={transition}
-          width={getWidth()*_slides.length}
-        >
-          {_slides.map((slide, i) => (
-            <Slide key={slide + i} content={slide} />
-          ))}
-        </SliderContent>
-      </StyledSlider>
+      <Swipeable onSwipingLeft={nextSlide} onSwipingRight={prevSlide}>
+        <StyledSlider>
+          <SliderContent
+            translate={translate}
+            transition={transition}
+            width={getWidth()*_slides.length}
+          >
+            {_slides.map((slide, i) => (
+                <Slide key={slide + i} content={slide} />
+            ))}
+          </SliderContent>
+        </StyledSlider>
+      </Swipeable>
       <StyledArrows>
         <Arrow direction="left" handleClick={prevSlide} />
         <Arrow direction="right" handleClick={nextSlide}/>
