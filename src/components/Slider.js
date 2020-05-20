@@ -20,7 +20,13 @@ const StyledArrows = styled.div`
 `;
 
 const Slider = (props) => {
-  const getWidth = () => Math.min(window.innerWidth, 1600);
+  const getWidth = () => {
+    if (window) {
+      return Math.min(window.innerWidth, 1600);
+    } else {
+      return(1600);
+    }
+  };
   const { slides } = props;
   const initialSlide = props.initialSlide || 0;
 
