@@ -1,19 +1,27 @@
 import React, { useState, useRef, useEffect } from "react";
-import {Transition} from 'react-spring/renderprops';
 import styled from 'styled-components';
 
 import CustomLink from './CustomLink';
+import delayUnmounting from './delayUnmounting';
 
-  // @keyframes slideFromLeft {
-  //   0% {
-  //     transform: translateX(-100%);
-  //   }
-  //   100% {
-  //     transform: translateX(0);
-  //   }
-  // }
-  // animation: slideFromLeft 0.3s linear;
 const StyledHamburgerMenu = styled.div`
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  @keyframes slideOut {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  animation: ${props => props.isMounted ? 'slideIn' : 'slideOut'} 0.3s linear;
   z-index: -1;
   display: flex;
   flex-direction: column;
@@ -73,7 +81,7 @@ class HamburgerMenu extends React.Component {
     const section = this.props.section;
     const menuItems = this.props.menuItems;
     return (
-      <StyledHamburgerMenu>
+      <StyledHamburgerMenu isMounted={this.props.isMounted}>
         <ul>
           {menuItems.map((menuItem) => {
             return (
@@ -93,6 +101,7 @@ class HamburgerMenu extends React.Component {
     )
   }
 }
+const DelayedHambergerMenu = delayUnmounting(HamburgerMenu);
 
 function useMenuOpen(initialIsVisible) {
   const [isMenuOpen, setMenuOpen] = useState(initialIsVisible);
@@ -179,16 +188,8 @@ const Hamburger = ({ section, menuItems }) => {
           <div></div>
           <div></div>
       </StyledHamburger>
-      <Transition
-          items={isMenuOpen}
-          // from={{ transform: 'translateX(-100%)' }}
-          // enter={{ transform: 'translateX(0)' }}
-          // leave={{ transform: 'translateX(-100%)' }}>
-          from={{ opacity: 0 }}
-          enter={{ opacity: 1 }}
-          leave={{ opacity: 0 }}>
-          {isMenuOpen => isMenuOpen && (props => <HamburgerMenu style={props} section={section} menuItems={menuItems}/>)}
-      </Transition>
+
+      <DelayedHambergerMenu delayTime={300} isMounted={isMenuOpen} section={section} menuItems={menuItems}/>
     </div>
   )
 }
