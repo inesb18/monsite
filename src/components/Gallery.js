@@ -106,22 +106,24 @@ const Gallery = ({ photos, alt }) => {
     setModalOpen
   } = useModalOpen(false);
 
-  const [currentPic, setCurrentPic] = useState(0);
+  const sliderRef = useRef();
 
-  const toggleModal = (i = 0) => {
-    setModalOpen(!isModalOpen);
-    if (isModalOpen) {
-      setCurrentPic(i);
-      document.body.style.overflow = "visible";
-    } else {
-      document.body.style.overflow = "hidden";
-    }
+  const openModal = (i) => {
+    console.log(i);
+    sliderRef.current.goTo(i);
+    setModalOpen(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    document.body.style.overflow = "visible";
   };
 
   const childElements = photos.map((photo, i) => {
     const optimizedImage = photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_800`);
     return (
-      <StyledImage key={photo[0]} src={optimizedImage} alt={alt} onClick={() => toggleModal(i)}/>
+      <StyledImage key={photo[0]} src={optimizedImage} alt={alt} onClick={() => openModal(i)}/>
     );
   });
 
@@ -141,13 +143,13 @@ const Gallery = ({ photos, alt }) => {
         <StyledModal show={isModalOpen}>
           <div className="modalHeader">
             <h2>{alt}</h2>
-            <div className="closeButton" onClick={toggleModal}>
+            <div className="closeButton" onClick={closeModal}>
               <div></div>
               <div></div>
               <div></div>
             </div>
           </div>
-          <SimpleSlider slickGoTo={currentPic}>
+          <SimpleSlider ref={sliderRef}>
             {
               photos.map((photo) => {
                 const optimizedImage = photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_1500`);

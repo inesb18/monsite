@@ -9,15 +9,11 @@ const StyledCarousel = styled.div`
   }
   .slick-slider {
     height: 80vh;
-    .imageSlideWrap {
-      display: flex;
-    }
     img {
       margin: 0 auto;
       max-height: 80vh;
       width: auto;
       object-fit: contain;
-      overflow: hidden;
     }
   }
   .arrows {
@@ -58,11 +54,17 @@ export default class SimpleSlider extends Component {
     }
   };
 
+  goTo(i) {
+    this.slider.slickGoTo(i);
+  }
+
   componentDidMount() {
+    console.log("mounted");
     document.addEventListener("keydown", this.handleNextPrev, true);
   }
 
   componentWillUnmount() {
+    console.log("unmounted");
     document.removeEventListener("keydown", this.handleNextPrev, true);
   }
 
