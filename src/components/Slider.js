@@ -12,13 +12,22 @@ const StyledSlider = styled.div`
   width: min(1600px, 100%);
   margin: 0 auto;
   overflow: hidden;
+  @media screen and (orientation: landscape) and (max-width: 768px) {
+    height: calc(100vh - 8rem - 1rem);
+  }
 `;
 
 const StyledArrows = styled.div`
   padding: 0 2rem;
   display: flex;
   justify-content: center;
-  @media screen and (orientation: portrait) and (max-width: 768px) {
+  @media screen and (orientation: landscape) and (max-width: 768px) {
+    justify-content: space-between;
+    width: 100vw;
+    position: absolute;
+    top: calc(50% - 3rem);
+  }
+  @media screen and (max-width: 768px) {
     justify-content: space-between;
   }
 `;
@@ -137,7 +146,7 @@ const Slider = (props) => {
   }
 
   return (
-    <div>
+    <div style={{position: 'relative'}}>
       <Swipe onSwipeLeft={nextSlide} onSwipeRight={prevSlide}>
         <StyledSlider>
           <SliderContent
