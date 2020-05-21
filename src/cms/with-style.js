@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheetManager, ThemeProvider } from 'styled-components';
 
-import theme from '../components/Page';
 import GlobalStyle from '../components/Page';
 
 function StyleInjector({ children }) {
@@ -16,55 +15,33 @@ function StyleInjector({ children }) {
   }, []);
 
   return (
-    iframeRef && (
-      <StyleSheetManager target={iframeRef}>
-        {children}
-      </StyleSheetManager>
-    )
+   iframeRef &&
+      <ThemeProvider
+        theme={{  peach: '#FB9F89',
+                  darkPeach: '#E78F7B',
+                  lightPeach: '#FDC5B8',
+                  veryLightPeach: '#FFF3F1',
+                  black: '#393939',
+                  maxWidth: '1200px',
+                  outPadding: '2.4rem',
+                  outPaddingSmall: '1rem',
+                  heightHeader: '8rem',
+                  heightHeaderSmall: '6rem',
+                  innerVerticalPadding: '6rem' }}
+      >
+        <StyleSheetManager target={iframeRef}>
+          {children}
+        </StyleSheetManager>
+      </ThemeProvider>
   );
 }
 
 export default function withStyled(Comp) {
   return props => (
-    // <ThemeProvider theme={theme}>
       <StyleInjector>
         <Comp {...props} />
       </StyleInjector>
-    // </ThemeProvider>
   );
 }
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import { StyleSheetManager, ThemeProvider } from 'styled-components';
-
-// import theme from '../components/Page';
-// import GlobalStyle from '../components/Page';
-
-// const StylesheetInjector = ({ children }) => {
-//   const [iframeRef, setIframeRef] = useState(undefined);
-
-//   useEffect(() => {
-//     const iframe = document.querySelector('#nc-root iframe');
-//     const iframeHeadElem = iframe && iframe.contentDocument.head;
-//     setIframeRef(iframeHeadElem);
-//   }, []);
-
-//   return (
-//     <div>
-//       {iframeRef && (
-//         <ThemeProvider theme={theme}>
-//           <StyleSheetManager target={iframeRef}>
-//             <GlobalStyle/>
-//             {children}
-//           </StyleSheetManager>
-//         </ThemeProvider>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default StylesheetInjector;
 
 

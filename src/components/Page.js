@@ -6,7 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import SEO from './SEO';
 
-export const theme = {
+const theme = {
   peach: '#FB9F89',
   darkPeach: '#E78F7B',
   lightPeach: '#FDC5B8',
@@ -50,7 +50,7 @@ const Inner = styled.main`
   }
 `;
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   html {
     height: 100%;
     box-sizing: border-box;
