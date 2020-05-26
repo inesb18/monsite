@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
-import "./main.css";
 import Header from './Header';
 import Footer from './Footer';
 import SEO from './SEO';
@@ -36,7 +35,6 @@ const Inner = styled.main`
   margin: 0 auto;
   padding-top: calc(${props => props.theme.heightHeader} + ${props => props.theme.innerVerticalPadding});
   padding-bottom: ${props => props.theme.innerVerticalPadding};
-  margin: 0 auto;
   width: 80%;
   @media (max-width: 1200px) {
     width: 85%;
@@ -83,11 +81,11 @@ class Page extends Component {
         <SEO title="Inès Belghiti"/>
         <GlobalStyle/>
         <StyledPage>
-          <Header section = {this.props.section} />
+          <Header section = {this.props.section} lang={this.props.lang}/>
           <Inner>
             { this.props.children }
           </Inner>
-          <Footer/>
+          <Footer lang={this.props.lang} slug={this.props.slug}/>
         </StyledPage>
       </ThemeProvider>
     )

@@ -78,7 +78,7 @@ function useModalOpen(initialIsVisible) {
   return { ref, isModalOpen, setModalOpen };
 }
 
-const Gallery = ({ photos, alt }) => {
+const Gallery = ({ photos, photosSlider, alt }) => {
   const [visible, setVisible] = useState(false);
   const [currentPic, setCurrentPic] = useState();
   const {
@@ -96,9 +96,8 @@ const Gallery = ({ photos, alt }) => {
   };
 
   const childElements = photos.map((photo, i) => {
-    const optimizedImage = photo[0].replace(photo[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_800`);
     return (
-      <StyledImage key={photo[0]} src={optimizedImage} alt={alt} onClick={() => openModal(i)}/>
+      <StyledImage key={photo} src={photo} alt={alt} onClick={() => openModal(i)}/>
     );
   });
 
@@ -106,7 +105,6 @@ const Gallery = ({ photos, alt }) => {
     setVisible(true);
   }
 
-  const pictures = photos.map(photo => photo[0]);
 
   return (
       <StyledGallery visible={visible}>
@@ -120,7 +118,7 @@ const Gallery = ({ photos, alt }) => {
         {
           isModalOpen &&
           <Modal title= {alt} closeMethod={closeModal}>
-            <Slider slides={pictures} initialSlide={currentPic}/>
+            <Slider slides={photosSlider} initialSlide={currentPic}/>
           </Modal>
         }
       </StyledGallery>

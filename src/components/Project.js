@@ -108,10 +108,10 @@ const Project = ({ project }) => {
     setInfoVisible(!isInfoVisible);
   };
 
-  const optimizedImage = project.image[0].replace(project.image[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_800`);
+  // const optimizedImage = project.image[0].replace(project.image[0].match(/upload\/(.+)\/MonSite/)[1],`q_auto,f_auto,c_fit,w_800`);
 
   return (
-    <StyledProject image={optimizedImage} ref={ref}
+    <StyledProject image={project.image} ref={ref}
       onClick={toggleInfo}
       onMouseEnter={showInfo}
       onMouseLeave={hideInfo}

@@ -28,36 +28,58 @@ const StyledHeader = styled.header `
 `;
 
 
-const Header  = ({ section }) => {
+const Header  = ({ section, lang }) => {
   const data = useStaticQuery(graphql`
     query {
-      nav: allMarkdownRemark(filter: {fields: {slug: {eq: "/navbar/"}}}) {
+      allContentfulNavbar {
         edges {
           node {
-            fields {
-              slug
-            }
-            frontmatter {
-              menuItems {
-                URL
-                label
-                linkType
+            node_locale
+            logo {
+              file {
+                url
               }
-              logo
+            }
+            liensVersAutresPages {
+              ... on Node {
+                ... on ContentfulPageAPropos {
+                  id
+                  slug
+                  nomDansNavbar
+                }
+                ... on ContentfulPageTech {
+                  id
+                  slug
+                  nomDansNavbar
+                }
+                ... on ContentfulPagePhoto {
+                  id
+                  slug
+                  nomDansNavbar
+                }
+                ... on ContentfulPageAccueil {
+                  id
+                  nomDansNavbar
+                }
+              }
             }
           }
         }
       }
     }
   `)
-  const logoPath = data.nav.edges[0].node.frontmatter.logo;
-  const menuItems = data.nav.edges[0].node.frontmatter.menuItems;
+  const navbar = data.allContentfulNavbar.edges.filter(({ node }) => node.node_locale === lang);
+  const logo = navbar[0].node.logo.file.url;
+  const menuItems = navbar[0].node.liensVersAutresPages.map((link) => {
+    const locale = navbar[0].node.node_locale === 'fr' ? '' : `${navbar[0].node.node_locale}/`;
+    return ({ URL: link.slug ? `/${locale}${link.slug}` : `/${locale}`, label: link.nomDansNavbar, linkType: "internal"})
+  })
   return (
     <StyledHeader>
       <Link to="/">
         <img
           className="logo"
-          src={logoPath}
+          src={'https:'+logo}
           alt="logo"
         />
       </Link>

@@ -1,12 +1,13 @@
 import React from "react"
 
 import Page from "../components/Page"
+import PageTitle from "../components/PageTitle"
 import SEO from "../components/SEO"
 
 const NotFoundPage = () => (
-  <Page>
+  <Page lang="en-US">
     <SEO title="404: Not found" />
-    <h1>Page non trouvée</h1>
+    <PageTitle title="404: Page not found"/>
   </Page>
 )
 

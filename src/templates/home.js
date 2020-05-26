@@ -90,17 +90,19 @@ const StyledLinks = styled.div `
 `;
 
 const IndexPage = ({ data }) => {
-  const block = data.home.edges[0].node.frontmatter.block;
-  const links = data.home.edges[0].node.frontmatter.links;
-  const linkToAbout = data.home.edges[0].node.frontmatter.linkToAbout;
+  const home = data.allContentfulPageAccueil.edges[0].node;
+  const locale = home.node_locale === 'fr' ? '' : `${home.node_locale}/`;
+  const completeSlugTech = `/${locale}${data.allContentfulPageTech.edges[0].node.slug}`;
+  const completeSlugPhoto = `/${locale}${data.allContentfulPagePhoto.edges[0].node.slug}`;
+  const completeSlugAbout = `/${locale}${data.allContentfulPageAPropos.edges[0].node.slug}`;
   return (
-    <Page section="Accueil">
+    <Page section={home.nomDansNavbar} lang={home.node_locale} slug=" ">
       <StyledBlock>
-        <h1>{block.name}</h1>
+        <h1>{home.nom}</h1>
         <div className="block_infos">
-          <p>{block.keenOn}{` `}</p>
+          <p>{home.passionneDe}{` `}</p>
           <div>
-            {block.fields.map((field) => {
+            {home.domaines.map((field) => {
               return(
                 <h2 key={field}>{field}</h2>
               )
@@ -109,15 +111,14 @@ const IndexPage = ({ data }) => {
         </div>
       </StyledBlock>
       <StyledLinks>
-        {links.map((link) => {
-          return (
-            <CustomLink className="home_linkPortfolio" key={link.label} linkURL={link.URL} linkType={link.linkType} >
-              {link.label}
-            </CustomLink>
-          )
-        })}
-        <CustomLink className="home_linkAbout" key={linkToAbout.label} linkURL={linkToAbout.URL} linkType={linkToAbout.linkType} >
-            {linkToAbout.label}
+        <CustomLink className="home_linkPortfolio" linkURL={completeSlugTech} linkType="internal" >
+          {home.texteLienPageTech}
+        </CustomLink>
+        <CustomLink className="home_linkPortfolio" linkURL={completeSlugPhoto} linkType="internal" >
+          {home.texteLienPagePhoto}
+        </CustomLink>
+        <CustomLink className="home_linkAbout" linkURL={completeSlugAbout} linkType="internal" >
+          {home.texteLienPropos}
         </CustomLink>
       </StyledLinks>
     </Page>
@@ -127,30 +128,39 @@ const IndexPage = ({ data }) => {
 export default IndexPage
 
 export const pageQuery = graphql`
-  query {
-    home: allMarkdownRemark(filter: {fields: {slug: {eq: "/"}}}) {
+  query($id: String!) {
+    allContentfulPageAccueil(filter: { id: { eq: $id } }) {
       edges {
         node {
-          fields {
-            slug
-          }
-          frontmatter {
-            block {
-              fields
-              keenOn
-              name
-            }
-            linkToAbout {
-              URL
-              label
-              linkType
-            }
-            links {
-              URL
-              label
-              linkType
-            }
-          }
+          node_locale
+          nom
+          passionneDe
+          texteLienPagePhoto
+          texteLienPageTech
+          texteLienPropos
+          domaines
+          nomDansNavbar
+        }
+      }
+    }
+    allContentfulPageTech(limit: 1) {
+      edges {
+        node {
+          slug
+        }
+      }
+    }
+    allContentfulPagePhoto(limit: 1) {
+      edges {
+        node {
+          slug
+        }
+      }
+    }
+    allContentfulPageAPropos(limit: 1) {
+      edges {
+        node {
+          slug
         }
       }
     }

@@ -1,71 +1,186 @@
-const _ = require("lodash");
-const path = require("path");
-const { createFilePath } = require("gatsby-source-filesystem");
+const path = require(`path`)
 
-exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions;
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
-  return graphql(`
-    {
-      allMarkdownRemark {
-        edges {
-          node {
-            id
-            fields {
+  const createHomePage = new Promise((resolve, reject) => {
+    const query = graphql(`
+      {
+        allContentfulPageAccueil {
+          edges {
+            node {
+              id
+              node_locale
+            }
+          }
+        }
+      }
+    `)
+    query.then(result => {
+      result.data.allContentfulPageAccueil.edges.forEach(({ node }) => {
+        const pathForTemplate = `./src/templates/home.js`;
+        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}`;
+        createPage({
+          path: `/${locale}`,
+          component: path.resolve(pathForTemplate),
+          context: {
+            id: node.id,
+          },
+        })
+      })
+      resolve()
+    })
+  })
+
+  const createAboutPage = new Promise((resolve, reject) => {
+    const query = graphql(`
+      {
+        allContentfulPageAPropos {
+          edges {
+            node {
+              id
+              node_locale
               slug
             }
           }
         }
       }
-    }
-  `).then(result => {
-    if (result.errors) {
-      result.errors.forEach(e => console.error(e.toString()));
-      return Promise.reject(result.errors);
-    }
+    `)
+    query.then(result => {
+      result.data.allContentfulPageAPropos.edges.forEach(({ node }) => {
+        const pathForTemplate = `./src/templates/about.js`;
+        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}/`;
+        createPage({
+          path: `/${locale}${node.slug}`,
+          component: path.resolve(pathForTemplate),
+          context: {
+            id: node.id,
+          },
+        })
+      })
+      resolve()
+    })
+  })
 
-    // Filter out the footer, navbar, and meetups so we don't create pages for those
-    const Pages = result.data.allMarkdownRemark.edges.filter(edge => {
-      if (edge.node.fields.slug === "/navbar/" || edge.node.fields.slug === "/footer/") {
-        return false;
-      } else {
-        return true;
+  const createTechPage = new Promise((resolve, reject) => {
+    const query = graphql(`
+      {
+        allContentfulPageTech {
+          edges {
+            node {
+              id
+              node_locale
+              slug
+            }
+          }
+        }
       }
-    });
+    `)
+    query.then(result => {
+      result.data.allContentfulPageTech.edges.forEach(({ node }) => {
+        const pathForTemplate = `./src/templates/tech-projects.js`;
+        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}/`;
+        createPage({
+          path: `/${locale}${node.slug}`,
+          component: path.resolve(pathForTemplate),
+          context: {
+            id: node.id,
+          },
+        })
+      })
+      resolve()
+    })
+  })
 
-    Pages.forEach(edge => {
-      let component, pathName;
-      pathName = edge.node.fields.slug;
-      if (pathName.match(/^\/photographie\/.*$/)) {
-        component = path.resolve(`src/templates/photographie-cat.js`);
-      } else if (pathName === "/") {
-        component = path.resolve(`src/templates/home.js`);
-
-      } else {
-        component = path.resolve(`src/templates/${String(edge.node.fields.slug.slice(0,-1))}.js`);
+  const createPhotoPage = new Promise((resolve, reject) => {
+    const query = graphql(`
+      {
+        allContentfulPagePhoto {
+          edges {
+            node {
+              id
+              node_locale
+              slug
+            }
+          }
+        }
       }
-      const id = edge.node.id;
-      createPage({
-        path: pathName,
-        component,
-        // additional data can be passed via context
-        context: {
-          slug: pathName,
-        },
-      });
-    });
-  });
-};
+    `)
+    query.then(result => {
+      result.data.allContentfulPagePhoto.edges.forEach(({ node }) => {
+        const pathForTemplate = `./src/templates/photography.js`;
+        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}/`;
+        createPage({
+          path: `/${locale}${node.slug}`,
+          component: path.resolve(pathForTemplate),
+          context: {
+            id: node.id,
+          },
+        })
+      })
+      resolve()
+    })
+  })
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
+  const createPhotoCatPage = new Promise((resolve, reject) => {
+    const query = graphql(`
+      {
+        allContentfulPagePhotoCategorie {
+          edges {
+            node {
+              id
+              node_locale
+              slug
+            }
+          }
+        }
+      }
+    `)
+    query.then(result => {
+      result.data.allContentfulPagePhotoCategorie.edges.forEach(({ node }) => {
+        const pathForTemplate = `./src/templates/photography-cat.js`;
+        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}/`;
+        createPage({
+          path: `/${locale}${node.slug}`,
+          component: path.resolve(pathForTemplate),
+          context: {
+            id: node.id,
+          },
+        })
+      })
+      resolve()
+    })
+  })
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    });
-  }
-};
+  const createMentionsLegales = new Promise((resolve, reject) => {
+    const query = graphql(`
+      {
+        allContentfulPageMentionsLegales {
+          edges {
+            node {
+              id
+              node_locale
+            }
+          }
+        }
+      }
+    `)
+    query.then(result => {
+      result.data.allContentfulPageMentionsLegales.edges.forEach(({ node }) => {
+        const pathForTemplate = `./src/templates/mentions-legales.js`;
+        if (node.node_locale === "fr") {
+          createPage({
+            path: `/mentions-legales`,
+            component: path.resolve(pathForTemplate),
+            context: {
+              id: node.id,
+            },
+          })
+        }
+      })
+      resolve()
+    })
+  })
+
+  return Promise.all([createHomePage, createAboutPage, createTechPage, createPhotoPage, createPhotoCatPage, createMentionsLegales])
+}
