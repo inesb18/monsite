@@ -77,14 +77,14 @@ const Footer  = ({ lang, slug }) => {
         }
       </div>
       <ul className="footer_right">
-        <li>
-          <CustomLink
-            linkType={"internal"}
-            linkURL="#"
-          >
-            {lang === "en-US" ? "Legal notice" : "Mentions légales"}
-          </CustomLink>
-        </li>
+          <li>
+            <CustomLink
+              linkType={"internal"}
+              linkURL="/mentions-legales"
+            >
+              Mentions légales
+            </CustomLink>
+          </li>
         <li>
           <CustomLink
             linkType={"external"}

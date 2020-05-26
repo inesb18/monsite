@@ -35,7 +35,6 @@ const Inner = styled.main`
   margin: 0 auto;
   padding-top: calc(${props => props.theme.heightHeader} + ${props => props.theme.innerVerticalPadding});
   padding-bottom: ${props => props.theme.innerVerticalPadding};
-  margin: 0 auto;
   width: 80%;
   @media (max-width: 1200px) {
     width: 85%;

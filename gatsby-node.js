@@ -152,5 +152,35 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  return Promise.all([createHomePage, createAboutPage, createTechPage, createPhotoPage, createPhotoCatPage])
+  const createMentionsLegales = new Promise((resolve, reject) => {
+    const query = graphql(`
+      {
+        allContentfulPageMentionsLegales {
+          edges {
+            node {
+              id
+              node_locale
+            }
+          }
+        }
+      }
+    `)
+    query.then(result => {
+      result.data.allContentfulPageMentionsLegales.edges.forEach(({ node }) => {
+        const pathForTemplate = `./src/templates/mentions-legales.js`;
+        if (node.node_locale === "fr") {
+          createPage({
+            path: `/mentions-legales`,
+            component: path.resolve(pathForTemplate),
+            context: {
+              id: node.id,
+            },
+          })
+        }
+      })
+      resolve()
+    })
+  })
+
+  return Promise.all([createHomePage, createAboutPage, createTechPage, createPhotoPage, createPhotoCatPage, createMentionsLegales])
 }

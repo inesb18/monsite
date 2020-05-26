@@ -13,7 +13,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    // `gatsby-transformer-remark`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
@@ -38,12 +37,13 @@ module.exports = {
       },
     },
     {
-        resolve: `gatsby-source-contentful`,
-        options: {
-          spaceId: process.env.CONTENTFUL_SPACE_ID,
-          accessToken: process.env.CONTENTFUL_PREVIEW_KEY,
-          host: `preview.contentful.com`,
-        },
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_PREVIEW_KEY,
+        host: `preview.contentful.com`,
       },
+    },
+    `gatsby-transformer-remark`,
   ],
 }

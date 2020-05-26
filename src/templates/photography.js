@@ -140,17 +140,3 @@ export const pageQuery = graphql`
     }
   }
 `
-
-    // categories: allMarkdownRemark(filter: {fields: {slug: {regex: "/^/photographie/.*$/"}}}, sort: {order: ASC, fields: frontmatter___order}) {
-    //   edges {
-    //     node {
-    //       fields {
-    //         slug
-    //       }
-    //       frontmatter {
-    //         coverPicture
-    //         title
-    //       }
-    //     }
-    //   }
-    // }
