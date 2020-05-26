@@ -69,23 +69,27 @@ const StyledCat = styled.div`
 
 
 const Photography = ({ data }) => {
-  const categories = data.categories.edges;
+  const page = data.allContentfulPagePhoto.edges[0].node;
+  const categories = page.catgoriesPhoto;
   return (
-    <Page section="Photographie">
-      <PageTitle title="Photographie"/>
+    <Page section={page.nomDansNavbar} lang={page.node_locale} slug={page.slug}>
+      <PageTitle title={page.titre}/>
       <div>
-        {categories.map(({ node }, i) => {
-          const photoID = 'MonSite' + node.frontmatter.coverPicture[0].match(/MonSite(.+)/)[1];
+        {categories.map((categorie, i) => {
+          console.log(categorie);
+          const photoID = 'Mon%20Site' + categorie.photoDeCouverture[0].secure_url.match(/Mon%20Site(.+)/)[1];
+          const locale = page.node_locale === 'fr' ? '' : `${page.node_locale}/`;
+          const completeSlug = `/${locale}${categorie.slug}`;
           if (i%2 === 0) {
             return (
-              <StyledCat side='right' key={node.fields.slug}>
-                <Link to={node.fields.slug}>
+              <StyledCat side='right' key={categorie.titre}>
+                <Link to={completeSlug}>
                   <h2>
-                      {node.frontmatter.title}
+                      {categorie.titre}
                   </h2>
                 </Link>
-                <Link to={node.fields.slug}>
-                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={node.frontmatter.title}>
+                <Link to={completeSlug}>
+                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={categorie.titre}>
                     <Transformation quality="auto" fetch_format="auto" width="800" crop="fit"/>
                   </Image>
                 </Link>
@@ -93,15 +97,15 @@ const Photography = ({ data }) => {
             )
           } else {
             return(
-              <StyledCat side='left' key={node.fields.slug}>
-                <Link to={node.fields.slug}>
-                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={node.frontmatter.title}>
+              <StyledCat side='left' key={categorie.titre}>
+                <Link to={completeSlug}>
+                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={categorie.titre}>
                     <Transformation quality="auto" fetch_format="auto" width="800" crop="fit"/>
                   </Image>
                 </Link>
-                <Link to={node.fields.slug}>
+                <Link to={completeSlug}>
                   <h2>
-                      {node.frontmatter.title}
+                      {categorie.titre}
                   </h2>
                 </Link>
               </StyledCat>
@@ -116,19 +120,37 @@ const Photography = ({ data }) => {
 export default Photography
 
 export const pageQuery = graphql`
-  query {
-    categories: allMarkdownRemark(filter: {fields: {slug: {regex: "/^/photographie/.*$/"}}}, sort: {order: ASC, fields: frontmatter___order}) {
+  query($id: String!) {
+    allContentfulPagePhoto(filter: { id: { eq: $id } }) {
       edges {
         node {
-          fields {
+          slug
+          node_locale
+          nomDansNavbar
+          titre
+          catgoriesPhoto {
+            titre
             slug
-          }
-          frontmatter {
-            coverPicture
-            title
+            photoDeCouverture {
+              secure_url
+            }
           }
         }
       }
     }
   }
 `
+
+    // categories: allMarkdownRemark(filter: {fields: {slug: {regex: "/^/photographie/.*$/"}}}, sort: {order: ASC, fields: frontmatter___order}) {
+    //   edges {
+    //     node {
+    //       fields {
+    //         slug
+    //       }
+    //       frontmatter {
+    //         coverPicture
+    //         title
+    //       }
+    //     }
+    //   }
+    // }

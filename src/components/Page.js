@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 
-import "./main.css";
 import Header from './Header';
 import Footer from './Footer';
 import SEO from './SEO';
@@ -83,11 +82,11 @@ class Page extends Component {
         <SEO title="Inès Belghiti"/>
         <GlobalStyle/>
         <StyledPage>
-          <Header section = {this.props.section} />
+          <Header section = {this.props.section} lang={this.props.lang}/>
           <Inner>
             { this.props.children }
           </Inner>
-          <Footer/>
+          <Footer lang={this.props.lang} slug={this.props.slug}/>
         </StyledPage>
       </ThemeProvider>
     )

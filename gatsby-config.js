@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     title: `Inès Belghiti`,
@@ -11,15 +13,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    "gatsby-remark-source-name",
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `content`,
-        path: `${__dirname}/src/content`,
-      },
-    },
-    `gatsby-transformer-remark`,
+    // `gatsby-transformer-remark`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sass`,
     `gatsby-transformer-sharp`,
@@ -37,10 +31,19 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-netlify-cms',
+      resolve: `gatsby-source-contentful`,
       options: {
-        modulePath: `${__dirname}/src/cms/cms.js`,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_DELIVERY_KEY,
       },
     },
+    {
+        resolve: `gatsby-source-contentful`,
+        options: {
+          spaceId: process.env.CONTENTFUL_SPACE_ID,
+          accessToken: process.env.CONTENTFUL_PREVIEW_KEY,
+          host: `preview.contentful.com`,
+        },
+      },
   ],
 }

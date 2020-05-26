@@ -16,6 +16,11 @@ const StyledFooter = styled.footer `
     p {
       margin: 0;
     }
+    .languages {
+      a.active {
+        font-weight: bold;
+      }
+    }
   }
   .footer_right {
     list-style: none;
@@ -30,52 +35,64 @@ const StyledFooter = styled.footer `
 `;
 
 
-const Footer  = ({ section }) => {
+const Footer  = ({ lang, slug }) => {
   const data = useStaticQuery(graphql`
     query {
-      footer: allMarkdownRemark(filter: {fields: {slug: {eq: "/footer/"}}}) {
+      allContentfulFooter {
         edges {
           node {
-            fields {
-              slug
-            }
-            frontmatter {
-              rightsAndCredits
-              links {
-                URL
-                label
-                linkType
-              }
-            }
+            email
           }
         }
       }
     }
   `)
-  const rightsAndCredits = data.footer.edges[0].node.frontmatter.rightsAndCredits;
-  const links = data.footer.edges[0].node.frontmatter.links;
+  const footer = data.allContentfulFooter.edges[0].node;
   return (
     <StyledFooter>
       <div className="footer_left">
-        {rightsAndCredits.map((line) => {
-          return (
-            <p key={line} >{line}</p>
-          )
-        })}
+        <p>© 2020 - {lang === "en-US" ? "All Rights Reserved." : "Tous droits réservés."}</p>
+        {
+          slug &&
+          <div className="languages">
+            <CustomLink
+              lang={lang}
+              className={lang === "fr" ? "active" : ""}
+              linkType={"internal"}
+              linkURL={"/"+slug}
+            >
+              FR
+            </CustomLink>
+            {`-`}
+            <CustomLink
+              lang={lang}
+              className={lang === "en-US" ? "active" : ""}
+              linkType={"internal"}
+              linkURL={`/en-US/${slug}`}
+            >
+              EN
+            </CustomLink>
+          </div>
+
+        }
       </div>
       <ul className="footer_right">
-        {links.map((link) => {
-          return (
-            <li key={link.label}>
-              <CustomLink
-                linkType={link.linkType}
-                linkURL={link.URL}
-              >
-                {link.label}
-              </CustomLink>
-            </li>
-          )
-        })}
+        <li>
+          <CustomLink
+            linkType={"internal"}
+            linkURL="#"
+          >
+            {lang === "en-US" ? "Legal notice" : "Mentions légales"}
+          </CustomLink>
+        </li>
+        <li>
+          <CustomLink
+            linkType={"external"}
+            linkURL={footer.email}
+          >
+            Contact
+          </CustomLink>
+        </li>
       </ul>
 
     </StyledFooter>

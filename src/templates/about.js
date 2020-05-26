@@ -1,7 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby"
 import styled from 'styled-components';
-import { Image, Transformation } from 'cloudinary-react';
 
 import Page from "../components/Page";
 import PageTitle from "../components/PageTitle";
@@ -45,30 +44,18 @@ const StyledText = styled.div`
   }
 `;
 
-export const AboutTemplate = ({ page }) => {
-  const photo = page.frontmatter.photo;
-  const contentHTML = page.html;
-  const photoID = 'MonSite' + photo.image[0].match(/MonSite(.+)/)[1];
-  return (
-    <div>
-      <StyledHeaderAbout>
-        <PageTitle title="À propos"/>
-        <div className="photo">
-          <Image cloudName="dfzwvorfr" publicId={photoID} alt={photo.imageAlt}>
-            <Transformation quality="auto" fetch_format="auto" width="600" crop="fit"/>
-          </Image>
-        </div>
-      </StyledHeaderAbout>
-      <StyledText dangerouslySetInnerHTML={{ __html: contentHTML }} />
-    </div>
-  )
-}
 
 const About = ({ data }) => {
-  const page = data.about.edges[0].node;
+  const about = data.allContentfulPageAPropos.edges[0].node;
   return (
-    <Page section="À propos">
-      <AboutTemplate page={page}/>
+    <Page section={about.nomDansNavbar} lang={about.node_locale} slug={about.slug}>
+      <StyledHeaderAbout>
+        <PageTitle title={about.titre}/>
+        <div className="photo">
+          <img src={about.photo.resize.src} alt="Inès Belghiti"/>
+        </div>
+      </StyledHeaderAbout>
+      <StyledText dangerouslySetInnerHTML={{ __html: about.texte.texte }} />
     </Page>
   )
 }
@@ -76,22 +63,25 @@ const About = ({ data }) => {
 export default About
 
 export const pageQuery = graphql`
-  query {
-    about: allMarkdownRemark(filter: {fields: {slug: {eq: "/a-propos/"}}}) {
+  query($id: String!) {
+    allContentfulPageAPropos(filter: { id: { eq: $id } }) {
       edges {
         node {
-          fields {
-            slug
+          slug
+          node_locale
+          titre
+          texte {
+            texte
           }
-          frontmatter {
-            photo {
-              image
-              imageAlt
+          photo {
+            resize(jpegProgressive: false, width: 600, quality: 100) {
+              src
             }
           }
-        html
+          nomDansNavbar
         }
       }
     }
   }
 `
+
