@@ -12,7 +12,7 @@ const PhotographyCat = ({ data }) => {
     return photo.secure_url.replace(photo.secure_url.match(/upload\/(.+)\/Mon%20Site/)[1],`q_auto,f_auto,c_fit,w_800`)
   });
   const photosSlider = page.photos.map ((photo) => {
-    return photo.secure_url;
+    return photo.secure_url.replace(photo.secure_url.match(/upload\/(.+)\/Mon%20Site/)[1],`q_auto,f_auto,c_fit,w_1600`);
   });
   const section = data.allContentfulPagePhoto.edges.filter(({ node }) => node.node_locale === page.node_locale)[0].node;
   return (
