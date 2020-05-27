@@ -91,7 +91,7 @@ const StyledLinks = styled.div `
 
 const IndexPage = ({ data }) => {
   const home = data.allContentfulPageAccueil.edges[0].node;
-  const locale = home.node_locale === 'fr' ? '' : `${home.node_locale}/`;
+  const locale = home.node_locale === 'fr' ? '' : `en/`;
   const completeSlugTech = `/${locale}${data.allContentfulPageTech.edges[0].node.slug}`;
   const completeSlugPhoto = `/${locale}${data.allContentfulPagePhoto.edges[0].node.slug}`;
   const completeSlugAbout = `/${locale}${data.allContentfulPageAPropos.edges[0].node.slug}`;

@@ -19,7 +19,7 @@ exports.createPages = ({ graphql, actions }) => {
     query.then(result => {
       result.data.allContentfulPageAccueil.edges.forEach(({ node }) => {
         const pathForTemplate = `./src/templates/home.js`;
-        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}`;
+        const locale = node.node_locale === 'fr' ? '' : 'en';
         createPage({
           path: `/${locale}`,
           component: path.resolve(pathForTemplate),
@@ -49,7 +49,7 @@ exports.createPages = ({ graphql, actions }) => {
     query.then(result => {
       result.data.allContentfulPageAPropos.edges.forEach(({ node }) => {
         const pathForTemplate = `./src/templates/about.js`;
-        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}/`;
+        const locale = node.node_locale === 'fr' ? '' : `en/`;
         createPage({
           path: `/${locale}${node.slug}`,
           component: path.resolve(pathForTemplate),
@@ -79,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
     query.then(result => {
       result.data.allContentfulPageTech.edges.forEach(({ node }) => {
         const pathForTemplate = `./src/templates/tech-projects.js`;
-        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}/`;
+        const locale = node.node_locale === 'fr' ? '' : `en/`;
         createPage({
           path: `/${locale}${node.slug}`,
           component: path.resolve(pathForTemplate),
@@ -109,7 +109,7 @@ exports.createPages = ({ graphql, actions }) => {
     query.then(result => {
       result.data.allContentfulPagePhoto.edges.forEach(({ node }) => {
         const pathForTemplate = `./src/templates/photography.js`;
-        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}/`;
+        const locale = node.node_locale === 'fr' ? '' : `en/`;
         createPage({
           path: `/${locale}${node.slug}`,
           component: path.resolve(pathForTemplate),
@@ -139,7 +139,7 @@ exports.createPages = ({ graphql, actions }) => {
     query.then(result => {
       result.data.allContentfulPagePhotoCategorie.edges.forEach(({ node }) => {
         const pathForTemplate = `./src/templates/photography-cat.js`;
-        const locale = node.node_locale === 'fr' ? '' : `${node.node_locale}/`;
+        const locale = node.node_locale === 'fr' ? '' : `en/`;
         createPage({
           path: `/${locale}${node.slug}`,
           component: path.resolve(pathForTemplate),

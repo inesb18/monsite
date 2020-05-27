@@ -68,7 +68,7 @@ const Footer  = ({ lang, slug }) => {
               lang={lang}
               className={lang === "en-US" ? "active" : ""}
               linkType={"internal"}
-              linkURL={`/en-US/${slug}`}
+              linkURL={`/en/${slug}`}
             >
               EN
             </CustomLink>
@@ -88,7 +88,7 @@ const Footer  = ({ lang, slug }) => {
         <li>
           <CustomLink
             linkType={"external"}
-            linkURL={footer.email}
+            linkURL={`mailto:${footer.email}`}
           >
             Contact
           </CustomLink>
