@@ -10,16 +10,28 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+function SEO({ description, lang, meta, image, title }) {
+  const { site, home } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
             title
-            description
             author {
               name
+            }
+          }
+        }
+        home: allContentfulPageAccueil {
+          edges {
+            node {
+              node_locale
+              seoDescription
+              ogImage {
+                file {
+                  url
+                }
+              }
             }
           }
         }
@@ -27,14 +39,17 @@ function SEO({ description, lang, meta, title }) {
     `
   )
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaTitle = title || site.siteMetadata.title;
+  const metaDescription = description || home.edges.filter(({node}) => node.node_locale === lang )[0].node.seoDescription;
+  const ogImage = 'https:' + home.edges.filter(({node}) => node.node_locale === lang )[0].node.ogImage.file.url;
+  const language = lang  === 'fr' ? 'fr' : 'en';
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
+      title={metaTitle}
       meta={[
         {
           name: `description`,
@@ -46,11 +61,11 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           property: `image`,
-          content: site.siteMetadata.image,
+          content: image,
         },
         {
           property: `og:description`,
@@ -62,7 +77,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: site.siteMetadata.image,
+          content: image,
         },
         {
           name: `twitter:card`,
@@ -74,7 +89,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: metaTitle,
         },
         {
           name: `twitter:description`,
@@ -97,7 +112,7 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 }
 
 export default SEO

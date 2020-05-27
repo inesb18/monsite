@@ -74,7 +74,7 @@ const StyledLinks = styled.div`
 const About = ({ data }) => {
   const about = data.allContentfulPageAPropos.edges[0].node;
   return (
-    <Page section={about.nomDansNavbar} lang={about.node_locale} slug={about.slug}>
+    <Page section={about.nomDansNavbar} lang={about.node_locale} slug={about.slug} title={about.seoTitre} description={about.seoDescription}>
       <StyledHeaderAbout>
         <PageTitle title={about.titre}/>
         <div className="photo">
@@ -145,6 +145,8 @@ export const pageQuery = graphql`
             }
           }
           nomDansNavbar
+          seoTitre
+          seoDescription
         }
       }
     }

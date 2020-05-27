@@ -96,7 +96,7 @@ const IndexPage = ({ data }) => {
   const completeSlugPhoto = `/${locale}${data.allContentfulPagePhoto.edges[0].node.slug}`;
   const completeSlugAbout = `/${locale}${data.allContentfulPageAPropos.edges[0].node.slug}`;
   return (
-    <Page section={home.nomDansNavbar} lang={home.node_locale} slug=" ">
+    <Page section={home.nomDansNavbar} lang={home.node_locale} slug=" " title={home.seoTitre} description={home.seoDescription}>
       <StyledBlock>
         <h1>{home.nom}</h1>
         <div className="block_infos">
@@ -140,6 +140,13 @@ export const pageQuery = graphql`
           texteLienPropos
           domaines
           nomDansNavbar
+          seoTitre
+          seoDescription
+          ogImage {
+            file {
+              url
+            }
+          }
         }
       }
     }

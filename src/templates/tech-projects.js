@@ -18,11 +18,11 @@ const StyledProjectsGrid = styled.div`
 `;
 
 const Projects = ({ data }) => {
-  const projectPage = data.allContentfulPageTech.edges[0].node;
-  const projects = projectPage.projets;
+  const page = data.allContentfulPageTech.edges[0].node;
+  const projects = page.projets;
   return (
-    <Page section={projectPage.nomDansNavbar} lang={projectPage.node_locale} slug={projectPage.slug}>
-      <PageTitle title={projectPage.titre}/>
+    <Page section={page.nomDansNavbar} lang={page.node_locale} slug={page.slug} title={page.seoTitre} description={page.seoDescription}>
+      <PageTitle title={page.titre}/>
       <StyledProjectsGrid>
         {projects.map((project)=> {
           const formattedProject = { description: project.descriptionCourte,
@@ -62,6 +62,8 @@ export const pageQuery = graphql`
             roles
             url
           }
+          seoTitre
+          seoDescription
         }
       }
     }

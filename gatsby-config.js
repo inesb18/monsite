@@ -4,7 +4,6 @@ module.exports = {
   siteMetadata: {
     title: `Inès Belghiti`,
     siteUrl: `https://www.ines-belghiti.com`,
-    description: `Passionnée de Développement Web, Product Management & Photographie`,
     author: {
       name: `Inès Belghiti`,
       link: `https://www.malt.fr/profile/inesbelghiti`

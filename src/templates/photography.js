@@ -72,7 +72,7 @@ const Photography = ({ data }) => {
   const page = data.allContentfulPagePhoto.edges[0].node;
   const categories = page.catgoriesPhoto;
   return (
-    <Page section={page.nomDansNavbar} lang={page.node_locale} slug={page.slug}>
+    <Page section={page.nomDansNavbar} lang={page.node_locale} slug={page.slug} title={page.seoTitre} description={page.seoDescription}>
       <PageTitle title={page.titre}/>
       <div>
         {categories.map((categorie, i) => {
@@ -135,6 +135,8 @@ export const pageQuery = graphql`
               secure_url
             }
           }
+          seoTitre
+          seoDescription
         }
       }
     }

@@ -78,7 +78,7 @@ class Page extends Component {
   render () {
     return (
       <ThemeProvider theme={theme}>
-        <SEO title="Inès Belghiti"/>
+        <SEO title={this.props.title} image={this.props.image} description={this.props.description} lang={this.props.lang}/>
         <GlobalStyle/>
         <StyledPage>
           <Header section = {this.props.section} lang={this.props.lang}/>
