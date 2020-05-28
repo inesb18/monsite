@@ -76,7 +76,6 @@ const Photography = ({ data }) => {
       <PageTitle title={page.titre}/>
       <div>
         {categories.map((categorie, i) => {
-          console.log(categorie);
           const photoID = 'Mon%20Site' + categorie.photoDeCouverture[0].secure_url.match(/Mon%20Site(.+)/)[1];
           const locale = page.node_locale === 'fr' ? '' : `en/`;
           const completeSlug = `/${locale}${categorie.slug}`;

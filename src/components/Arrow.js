@@ -10,6 +10,10 @@ const StyledArrow = styled.div`
   cursor: pointer;
   transition: transform ease-in 0.1s;
   transform: translateX(${props => props.direction === 'left' ? '-1' : '1'}rem);
+  transition: opacity 0.4s;
+  &.hidden {
+    opacity: 0;
+  }
   &:first-child {
     margin: right: 1rem;
     padding-left: 1rem;
@@ -25,9 +29,9 @@ const StyledArrow = styled.div`
   }
 `;
 
-const Arrow = ({ direction, handleClick }) => {
+const Arrow = ({ className, direction, handleClick }) => {
   return(
-    <StyledArrow onClick={handleClick} direction={direction}>
+    <StyledArrow className={className} onClick={handleClick} direction={direction}>
       {direction === 'right' ?
       <FaArrowRight size="1.8em"/>
       : <FaArrowLeft size="1.8em"/>}

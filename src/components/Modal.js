@@ -21,7 +21,7 @@ const StyledModal = styled.div`
   .closeButton {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 1rem;
     padding: 2rem;
     cursor: pointer;
     > div {
