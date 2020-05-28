@@ -89,7 +89,7 @@ const Photography = ({ data }) => {
                   </h2>
                 </Link>
                 <Link to={completeSlug}>
-                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={categorie.titre}>
+                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={categorie.titre} secure="true">
                     <Transformation quality="auto" fetch_format="auto" width="800" crop="fit"/>
                   </Image>
                 </Link>
@@ -99,7 +99,7 @@ const Photography = ({ data }) => {
             return(
               <StyledCat side='left' key={categorie.titre}>
                 <Link to={completeSlug}>
-                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={categorie.titre}>
+                  <Image cloudName="dfzwvorfr" publicId={photoID} alt={categorie.titre} secure="true">
                     <Transformation quality="auto" fetch_format="auto" width="800" crop="fit"/>
                   </Image>
                 </Link>
