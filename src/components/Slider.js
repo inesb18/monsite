@@ -52,34 +52,25 @@ const Slider = (props) => {
 
   const { translate, transition, activeSlide } = state;
 
-  // const transitionRef = useRef();
   const resizeRef = useRef();
   const keydownRef = useRef();
 
 
   useEffect(() => {
-    // transitionRef.current = smoothTransition
     resizeRef.current = handleResize
     keydownRef.current = handleKeydown
   })
 
   useEffect(() => {
-    // const smooth = (e) => {
-    //   if (e.target.className.includes('SliderContent')) {
-    //     transitionRef.current();
-    //   }
-    // }
     const resize = () => {
       resizeRef.current();
     }
     const keydown = (e) => {
       keydownRef.current(e);
     }
-    // const transitionEnd = window.addEventListener('transitionend', smooth);
     const onResize = window.addEventListener('resize', resize);
     const onKeydown = window.addEventListener('keydown', keydown);
     return () => {
-      // window.removeEventListener('transitionend', transitionEnd);
       window.removeEventListener('resize', onResize);
       window.removeEventListener('keydown', onKeydown);
     }
@@ -89,14 +80,6 @@ const Slider = (props) => {
     if (transition === 0) setState({ ...state, transition: 0.45 })
   }, [transition])
 
-  // const smoothTransition = () => {
-  //   console.log(state);
-  //   setState({
-  //     ...state,
-  //     transition: 0,
-  //     translate: getWidth() * activeSlide
-  //   })
-  // }
 
   const handleResize = () => {
     setState({ ...state, translate: getWidth(), transition: 0 })
@@ -111,7 +94,6 @@ const Slider = (props) => {
   };
 
   const nextSlide = () => {
-    // console.log(state);
     if (activeSlide !== slides.length - 1) {
       setState({
         ...state,
@@ -122,7 +104,6 @@ const Slider = (props) => {
   }
 
   const prevSlide = () => {
-    // console.log(state);
     if (activeSlide !== 0) {
       setState({
         ...state,
@@ -131,8 +112,6 @@ const Slider = (props) => {
       })
     }
   }
-
-  console.log(state.activeSlide);
 
   return (
     <div style={{position: 'relative'}}>
