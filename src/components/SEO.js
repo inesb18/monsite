@@ -41,7 +41,7 @@ function SEO({ description, lang, meta, image, title }) {
 
   const metaTitle = title || site.siteMetadata.title;
   const metaDescription = description || home.edges.filter(({node}) => node.node_locale === lang )[0].node.seoDescription;
-  const ogImage = 'https:' + home.edges.filter(({node}) => node.node_locale === lang )[0].node.ogImage.file.url;
+  const ogImage = image || 'https:' + home.edges.filter(({node}) => node.node_locale === lang )[0].node.ogImage.file.url;
   const language = lang  === 'fr' ? 'fr' : 'en';
 
   return (
@@ -65,7 +65,7 @@ function SEO({ description, lang, meta, image, title }) {
         },
         {
           property: `image`,
-          content: image,
+          content: ogImage,
         },
         {
           property: `og:description`,
@@ -77,7 +77,7 @@ function SEO({ description, lang, meta, image, title }) {
         },
         {
           property: `og:image`,
-          content: image,
+          content: ogImage,
         },
         {
           name: `twitter:card`,
