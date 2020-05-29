@@ -17,6 +17,7 @@ const theme = {
   heightHeader: '8rem',
   heightHeaderSmall: '6rem',
   innerVerticalPadding: '6rem',
+  innerVerticalPaddingSmall: '2rem',
 };
 
 const StyledPage = styled.div `
@@ -44,7 +45,7 @@ const Inner = styled.main`
   }
   @media (max-width: 768px) {
     width: 92%;
-    padding-top: calc(${props => props.theme.heightHeaderSmall} + ${props => props.theme.innerVerticalPadding});
+    padding-top: calc(${props => props.theme.heightHeaderSmall} + ${props => props.theme.innerVerticalPaddingSmall});
   }
 `;
 
