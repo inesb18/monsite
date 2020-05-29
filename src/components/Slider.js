@@ -82,7 +82,7 @@ const Slider = (props) => {
 
 
   const handleResize = () => {
-    setState({ ...state, translate: getWidth(), transition: 0 })
+    setState({ ...state, translate: getWidth() * activeSlide, transition: 0 })
   }
 
   const handleKeydown = (e) => {
