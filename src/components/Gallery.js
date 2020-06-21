@@ -7,6 +7,7 @@ import Slider from '../components/Slider';
 import Modal from './Modal';
 
 const StyledImage = styled.img`
+  cursor: pointer;
   width: 50%;
   padding: 0.3rem;
   @media (max-width: 768px) {
