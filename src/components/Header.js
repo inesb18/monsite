@@ -70,13 +70,13 @@ const Header  = ({ section, lang }) => {
   `)
   const navbar = data.allContentfulNavbar.edges.filter(({ node }) => node.node_locale === lang);
   const logo = navbar[0].node.logo.file.url;
+  const locale = navbar[0].node.node_locale === 'fr' ? '' : `en/`;
   const menuItems = navbar[0].node.liensVersAutresPages.map((link) => {
-    const locale = navbar[0].node.node_locale === 'fr' ? '' : `en/`;
     return ({ URL: link.slug ? `/${locale}${link.slug}` : `/${locale}`, label: link.nomDansNavbar, linkType: "internal"})
   })
   return (
     <StyledHeader>
-      <Link to="/">
+      <Link to={`/${locale}`}>
         <img
           className="logo"
           src={'https:'+logo}
