@@ -6,17 +6,25 @@ const StyledProject = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  min-height: 30rem;
   .infos {
+    height: 100%;
+    min-height: 30rem;
     opacity: 0;
     pointer-events: none;
     transition: all 0.1s;
-    padding: 2rem 1rem;
-    display: grid;
+    padding: 3rem;
+    display: flex;
     align-items: center;
-    grid-template-rows: auto 1fr 1fr 1fr;
-    grid-gap: 1rem;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
+    > * {
+      padding-bottom: 1rem;
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
     h2 {
       font-family: "Philosopher";
       font-size: 3.2rem;
@@ -44,8 +52,13 @@ const StyledProject = styled.div`
   @media (max-width: 768px) {
     .infos {
       font-size: 1.4rem;
-      padding: 1rem;
-      grid-gap: 0.6rem;
+      padding: 2rem;
+      > * {
+      padding-bottom: 0.6rem;
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
     }
   }
   @media (hover: hover) {
