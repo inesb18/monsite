@@ -144,7 +144,6 @@ export const pageQuery = graphql`
           mail
           lienGitHub
           lienLinkedIn
-          lienMalt
           texte {
             childMarkdownRemark {
               html
