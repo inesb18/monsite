@@ -31,7 +31,7 @@ const Projects = ({ data }) => {
                                      roles:  project.roles,
                                      image: project.maquette.resize.src}
           return (
-            <Project key={project.nom} project={formattedProject}/>
+            <Project key={project.nom} project={formattedProject} lang={page.node_locale}/>
           )
         })}
 

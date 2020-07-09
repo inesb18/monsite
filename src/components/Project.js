@@ -26,7 +26,7 @@ const StyledProject = styled.div`
     p {
       margin: 0;
     }
-    a {
+    .link {
       font-weight: bold;
       margin: 0 auto;
       width: fit-content;
@@ -78,7 +78,7 @@ const StyledProject = styled.div`
   }
 `;
 
-const Project = ({ project }) => {
+const Project = ({ project, lang }) => {
   const [isInfoVisibleFromHover, setInfoVisibleFromHover] = useState(false);
 
   const showInfoFromHover = () => {
@@ -116,7 +116,10 @@ const Project = ({ project }) => {
       <div className="infos">
         <h2>{project.name}</h2>
         <p>{project.description}</p>
-        <a href={project.URL} target="_blank" rel="noopener noreferrer">SITE WEB</a>
+        { project.URL ?
+          <a href={project.URL} target="_blank" rel="noopener noreferrer" className="link">{lang ==="fr" ? "SITE WEB" : "WEBSITE"}</a>
+          : <p className="link">{lang ==="fr" ? "Lien à venir" : "Link coming soon"}</p>
+        }
         <ul>
           {project.roles.map((role)=> {
             return(<li key={role}>{role}</li>);
